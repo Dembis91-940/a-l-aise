@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>À l'aise — apprendre à aborder, vraiment</title>
+<meta name="description" content="Un entraînement concret pour être à l'aise avec les femmes : confiance, conversation, signaux, consentement, refus. Sans trucs de manipulation.">
+<style>
+/* ============================================================
+   À l'aise — identité : éditorial chaud, papier crème, terre cuite
+   Palette validée contraste : text #221717 / bg #fff6f6 (16,4:1)
+   primary #a75654 sur blanc (5,12:1) · accent #aa5957 (4,91:1)
+   Aucune police distante : Georgia (titres) + système (texte) → hors ligne
+   ============================================================ */
+:root{
+  --text:#221717; --bg:#fff6f6; --surface:#f7eceb; --primary:#a75654;
+  --accent:#aa5957; --border:#e6dbda; --on-primary:#ffffff;
+  --ink:#2c1f1f; --muted:#5d4a49;
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:24px; --sp6:32px; --sp8:48px;
+  --r-sm:8px; --r-md:14px; --r-lg:22px;
+  --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding-bottom:132px; scroll-padding-bottom:140px;
+}
+h1,h2,h3{font-family:var(--serif); font-weight:400; line-height:1.2; margin:0}
+h1{font-size:34px; letter-spacing:-.5px}
+h2{font-size:25px}
+h3{font-size:19px}
+p{margin:0 0 var(--sp4)}
+a{color:var(--accent)}
+button{font-family:inherit; font-size:inherit; cursor:pointer}
+
+.wrap{max-width:680px; margin:0 auto; padding:0 var(--sp4)}
+.hidden{display:none !important}
+
+/* ---------- entête ---------- */
+header.top{
+  padding:var(--sp5) var(--sp4) var(--sp4);
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,var(--surface),var(--bg));
+}
+.brand{font-family:var(--serif); font-size:20px; letter-spacing:.3px}
+.brand small{display:block; font-family:var(--sans); font-size:12px; letter-spacing:2.4px;
+  text-transform:uppercase; color:var(--muted); margin-top:2px}
+.progresswrap{margin-top:var(--sp4)}
+.progressbar{height:6px; background:var(--border); border-radius:99px; overflow:hidden}
+.progressbar span{display:block; height:100%; width:0%; background:var(--primary);
+  border-radius:99px; transition:width .5s cubic-bezier(.4,0,.2,1)}
+.progresslabel{font-size:13px; color:var(--muted); margin-top:6px; display:flex; justify-content:space-between}
+
+/* ---------- écrans ---------- */
+.screen{padding:var(--sp5) 0}
+.lede{font-size:19px; color:var(--ink)}
+.kicker{font-size:12px; letter-spacing:2.4px; text-transform:uppercase; color:var(--accent);
+  margin-bottom:var(--sp2); font-weight:600}
+
+/* ---------- cartes modules ---------- */
+.mods{list-style:none; margin:var(--sp4) 0 0; padding:0; display:grid; gap:var(--sp3)}
+.mod{
+  display:flex; gap:var(--sp4); align-items:flex-start; width:100%; text-align:left;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md);
+  padding:var(--sp4); transition:transform .18s ease, border-color .18s ease;
+}
+.mod:active{transform:scale(.99)}
+.mod .num{
+  flex:0 0 34px; height:34px; border-radius:50%; background:var(--bg);
+  border:1px solid var(--border); color:var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-size:16px;
+}
+.mod.done .num{background:var(--primary); color:var(--on-primary); border-color:var(--primary)}
+.mod .t{font-family:var(--serif); font-size:19px; display:block; margin-bottom:2px}
+.mod .s{font-size:14px; color:var(--muted); display:block}
+
+/* ---------- leçon ---------- */
+.block{background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md);
+  padding:var(--sp4) var(--sp4) var(--sp2); margin:0 0 var(--sp4)}
+.block h3{margin-bottom:var(--sp3); color:var(--ink)}
+.famhead{display:flex; align-items:baseline; gap:10px; margin:var(--sp8) 0 var(--sp4);
+  padding-bottom:8px; border-bottom:2px solid var(--border)}
+.famhead .fnum{font-family:var(--serif); font-size:26px; color:var(--primary); line-height:1}
+.famhead h2{font-size:23px}
+.famhead.warn .fnum, .famhead.warn h2{color:var(--muted)}
+.block p:last-child{margin-bottom:var(--sp3)}
+.rule{background:var(--bg); border-left:3px solid var(--accent); border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:var(--sp3) var(--sp4); margin:0 0 var(--sp4); font-size:16px}
+.rule b{color:var(--primary)}
+.say{border-top:1px dashed var(--border); padding-top:var(--sp3); margin-top:var(--sp3)}
+.say span{display:block; font-size:15.5px; line-height:1.55}
+.good{margin-bottom:var(--sp2)}
+.good::before{content:"À DIRE"; display:block; color:var(--primary); font-weight:700; font-size:11.5px; letter-spacing:1.4px; margin-bottom:1px}
+.bad::before{content:"À ÉVITER"; display:block; color:var(--muted); font-weight:700; font-size:11.5px; letter-spacing:1.4px; margin-bottom:1px}
+.bad{color:var(--muted)}
+
+/* ---------- scénario ---------- */
+.scen{background:var(--bg); border:1px solid var(--border); border-radius:var(--r-md);
+  padding:var(--sp4); margin:0 0 var(--sp4)}
+.scen .ctx{font-size:15px; color:var(--muted); margin-bottom:var(--sp3)}
+.opt{display:block; width:100%; text-align:left; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--r-sm); padding:var(--sp3) var(--sp4);
+  margin-bottom:var(--sp2); color:var(--text); transition:border-color .15s ease, transform .15s ease}
+.opt:active{transform:scale(.995)}
+.opt.pick-ok{border-color:#3f7d5a; background:#eef6f0}
+.opt.pick-no{border-color:#b0554f; background:#fbeeed}
+.feedback{margin-top:var(--sp3); padding:var(--sp3) var(--sp4); border-radius:var(--r-sm);
+  background:var(--surface); border:1px solid var(--border); font-size:16px}
+.feedback b{color:var(--primary)}
+
+/* ---------- liste signaux ---------- */
+.sig{display:grid; gap:var(--sp2); margin:var(--sp4) 0}
+.sigrow{background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm);
+  padding:var(--sp3) var(--sp4); font-size:16px}
+.sigrow .tag{font-size:12px; letter-spacing:1.6px; text-transform:uppercase; font-weight:700; display:block; margin-bottom:2px}
+.tag.oui{color:#3f7d5a} .tag.neutre{color:#8a7a3f} .tag.non{color:#b0554f}
+
+/* ---------- boutons ---------- */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:var(--sp2);
+  background:var(--primary); color:var(--on-primary); border:none; border-radius:99px;
+  padding:14px 26px; font-size:16px; font-weight:600; transition:transform .15s ease, opacity .15s ease}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--border)}
+.btnrow{display:flex; gap:var(--sp2); flex-wrap:wrap; margin:var(--sp5) 0 0}
+
+/* ---------- journal ---------- */
+textarea{width:100%; min-height:120px; font-family:var(--sans); font-size:16px; color:var(--text);
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md);
+  padding:var(--sp4); resize:vertical; line-height:1.5}
+textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.note{font-size:13px; color:var(--muted); margin-top:var(--sp2)}
+
+/* ---------- bas de page ---------- */
+footer{border-top:1px solid var(--border); margin-top:var(--sp8); padding:var(--sp5) var(--sp4) 0;
+  font-size:14px; color:var(--muted)}
+.bar{position:fixed; left:0; right:0; bottom:0; background:rgba(255,246,246,.96);
+  backdrop-filter:blur(8px); border-top:1px solid var(--border);
+  padding:10px var(--sp4) calc(10px + env(safe-area-inset-bottom, 0px));
+  display:flex; gap:var(--sp2); justify-content:center; z-index:20}
+.bar button{background:transparent; border:none; color:var(--muted); font-size:12.5px;
+  padding:9px 8px; border-radius:99px}
+.bar button.on{color:var(--primary); font-weight:700}
+
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+@media (max-width:420px){h1{font-size:29px} h2{font-size:22px} body{font-size:16px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">À l'aise<small>Aborder, parler, avancer</small></div>
+    <div class="progresswrap">
+      <div class="progressbar" role="progressbar" aria-label="Progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pbar">
+        <span id="pfill"></span>
+      </div>
+      <div class="progresslabel"><span id="ptext">0 module terminé sur 7</span><span id="pct">0 %</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<footer class="wrap">
+  <p><b style="color:var(--text)">Ce que cette appli ne fera jamais :</b> t'apprendre à manipuler, à faire peur, ou à rendre quelqu'un dépendant de toi. Rien ici ne repose sur l'insécurité de l'autre. Un intérêt qui a besoin d'un stratagème pour exister n'existe pas.</p>
+  <p style="margin-bottom:0">Tes réponses et ta progression restent sur ton appareil (stockage local). Rien n'est envoyé nulle part.</p>
+</footer>
+
+<nav class="bar" aria-label="Navigation principale">
+  <button data-go="home" class="on">Parcours</button>
+  <button data-go="tech">Techniques</button>
+  <button data-go="train">Entraînement</button>
+  <button data-go="signals">Signaux</button>
+  <button data-go="journal">Journal</button>
+</nav>
+
+<script>
+/* =========================================================================
+   CONTENU — 7 modules. Chaque module : leçon (blocs), règles, scripts,
+   et un scénario interactif (3 choix, un seul tient).
+   ========================================================================= */
+const MODULES = [
+{
+  id:'base', n:1, t:"Être bien, tout seul", s:"La confiance n'est pas un rôle : c'est un état qu'on entretient.",
+  lesson:[
+    {h:"La confiance n'est pas une performance", p:[
+      "Presque tous les hommes qui « n'osent pas » croient qu'il leur manque des phrases. Ce qui manque, c'est un état intérieur stable. Une femme sent en trois secondes si tu es en train de chercher son approbation ou si tu es simplement là.",
+      "La bonne nouvelle : cet état ne se joue pas, il s'entretient. Trois choses le construisent — ton corps, ta voix, ton agenda."
+    ]},
+    {h:"Corps, voix, regard", p:[
+      "Épaules basses et ouvertes, pas redressées en position militaire. Le poids sur les deux pieds. Les mains visibles. C'est tout ce que ton corps a à faire.",
+      "Ta voix : parle plus lentement que ton habitude, et termine tes phrases en descendant (une phrase qui monte à la fin demande une validation, ça s'entend).",
+      "Le regard : tu regardes les yeux, tu peux détourner deux secondes, tu reviens. Ni fixe, ni fuyant."
+    ]},
+    {h:"La vraie base : une vie qui tient debout", p:[
+      "Un corps qui bouge, deux ou trois amitiés solides, un truc que tu fais parce que ça te plaît. Ce n'est pas du développement personnel décoratif : c'est ce qui fait que tu n'as pas besoin de cette conversation-là pour aller bien. Et ça change tout dans la façon dont tu l'abordes.",
+      "C'est aussi ce qui te rend intéressant. Pas les phrases."
+    ]}
+  ],
+  rules:[
+    "<b>La règle des 3 secondes</b> : quand tu hésites à aborder, tu as trois secondes. Après, ton cerveau fabrique des raisons. Tu y vas pendant les trois secondes, même mal.",
+    "<b>Le test du pote</b> : si tu ne dirais pas la phrase à un ami dans la même situation, ne la dis pas à elle."
+  ],
+  scripts:[
+    {ok:"« Bonjour. » (et tu attends.)", no:"« Salut ça va ? » (en enchaînant tout de suite)"},
+    {ok:"Parler lentement, finir ses phrases en bas.", no:"Parler vite et s'excuser d'exister."}
+  ],
+  scenario:{
+    ctx:"Tu es dans un bar, tu vois une femme qui te plaît. Ton cœur s'accélère, tu commences à chercher « la bonne phrase ».",
+    opts:[
+      {t:"Tu attends cinq minutes de trouver mieux. Puis elle part.", ok:false, why:"C'est le scénario le plus fréquent. Ce n'est pas la phrase qui manque : c'est la décision. Trois secondes, et tu y vas avec ce que tu as."},
+      {t:"Tu respires une fois, tu y vas et tu dis simplement bonjour.", ok:true, why:"Exactement ça. La phrase parfaite n'existe pas — la décision existe. La plupart des conversations s'arrêtent non pas parce que la première phrase était faible, mais parce qu'elle n'a jamais été dite."},
+      {t:"Tu l'abordes avec un compliment très appuyé sur son physique, pour marquer le coup.", ok:false, why:"Ça met la pression immédiatement et te place en position de quémandeur. Un compliment physique fort en ouverture, sans rien savoir d'elle, c'est un pari sur son apparence, pas un intérêt pour elle."}
+    ]
+  }
+},
+{
+  id:'aborder', n:2, t:"Aborder, honnêtement", s:"Ce qui marche : un contexte, un vrai intérêt, une porte de sortie.",
+  lesson:[
+    {h:"Le contexte décide plus que toi", p:[
+      "On n'aborde pas pareil dans une file d'attente, dans un cours, à une soirée, dans la rue ou en ligne. Dans un endroit où les gens restent (cours, soirée, salle, association), tu as le droit de prendre deux minutes. Dans un endroit de passage, sois bref et laisse-la partir si elle a un casque.",
+      "Le casque, les écouteurs, le nez dans un livre, la marche rapide : ce sont des signaux de disponibilité nuls. Ce n'est pas un refus — c'est un non-contexte. Tu ne forceras pas un non-contexte."
+    ]},
+    {h:"Les ouvertures qui tiennent", p:[
+      "1. La vérité simple : « Bonjour, je t'ai vue, j'avais envie de venir te dire bonjour. »",
+      "2. Le contexte partagé : « On fait la queue depuis vingt ans. Tu sais si ce truc vaut le coup ? »",
+      "3. La question sincère sur ce qu'elle fait là : « Tu viens pour qui ce soir ? »",
+      "4. Le compliment situationnel, ancré sur un choix réel (son livre, sa veste, une chose qu'elle a faite) — pas sur son corps, pas sur ses yeux."
+    ]},
+    {h:"Et après la première phrase, tu ne récites plus rien", p:[
+      "Une ouverture n'est pas un script à dérouler. C'est une main tendue : si elle répond court et regarde ailleurs, tu conclus proprement. Si elle répond et te relance, vous êtes déjà dans la conversation — tu écoutes, tu réagis."
+    ]}
+  ],
+  rules:[
+    "<b>Ouverture = 10 secondes maximum.</b> Si tu parles plus longtemps qu'elle au début, tu parles à toi-même.",
+    "<b>Toujours laisser une sortie</b> : « Si tu es pressée, pas de souci. » La sortie te rend plus crédible, pas moins désirable."
+  ],
+  scripts:[
+    {ok:"« Bonjour, j'avais envie de venir te dire bonjour. »", no:"Une phrase préparée de 4 lignes récitée sans respirer."},
+    {ok:"« Tu es pressée ou tu as deux minutes ? »", no:"« Je peux te parler ? » (impose, ne laisse pas le choix)"}
+  ],
+  scenario:{
+    ctx:"Dans le train, la personne à côté de toi lit un roman que tu connais. Tu as une heure de trajet.",
+    opts:[
+      {t:"Tu commences par « T'es magnifique », parce qu'il faut bien lancer.", ok:false, why:"Tu passes à côté d'un contexte en or. Elle lit un livre que tu connais : c'est la porte la plus naturelle du monde, et un compliment physique la referme."},
+      {t:"Tu dis : « J'ai vu le livre — la fin vaut le détour, mais je ne te dirai rien. »", ok:true, why:"Contexte réel, intérêt sincère, aucune pression. Elle répond ou non, dans les deux cas tu es légitime. C'est la conversation qui naît d'un endroit partagé, celle qui a le plus de chances d'exister."},
+      {t:"Tu attends qu'elle te regarde en premier, c'est plus naturel.", ok:false, why:"Elle n'a aucune raison de te regarder : elle lit. Attendre la bonne occasion dans un lieu de passage, c'est attendre un train qui ne passe pas."}
+    ]
+  }
+},
+{
+  id:'conv', n:3, t:"La conversation qui tient", s:"Écouter, relancer, partager un peu de toi.",
+  lesson:[
+    {h:"La règle de la réciprocité", p:[
+      "Une question, une réponse, un bout de toi. Si tu poses six questions d'affilée sans rien donner, tu ressembles à un formulaire. Si tu parles de toi dix minutes sans rien demander, tu ressembles à un podcast.",
+      "Le rythme qui marche : tu poses, tu écoutes, tu réagis avec un bout de ton histoire, et tu laisses un silence. Le silence n'est pas un trou à combler — c'est de l'espace."
+    ]},
+    {h:"Relancer, c'est tout l'art", p:[
+      "La plupart des conversations meurent parce que personne ne relance. Relancer, ce n'est pas changer de sujet, c'est creuser : « Et ça t'est venu comment ? », « C'était comment la première fois ? », « Tu détestes quoi là-dedans ? ».",
+      "Les sujets qui ouvrent : ce qu'elle aime, ce qu'elle fait et pourquoi, les voyages, les anecdotes, les avis un peu tranchés. Les sujets qui ferment : son ex, son salaire, son âge, et tout ce qui ressemble à un entretien d'embauche."
+    ]},
+    {h:"L'écoute, ce n'est pas attendre ton tour", p:[
+      "Écoute pour comprendre, pas pour répondre. Reprends un mot qu'elle vient d'utiliser — ça prouve que tu écoutais vraiment, et ça fait beaucoup plus d'effet que n'importe quelle phrase préparée."
+    ]}
+  ],
+  rules:[
+    "<b>Une question ouverte coûte une question fermée.</b> « Tu fais quoi dans la vie ? » ferme (elle répond un métier). « Qu'est-ce que tu aimes le plus là-dedans ? » ouvre.",
+    "<b>Tu ne convaincs pas en parlant : tu convaincs en t'intéressant.</b>"
+  ],
+  scripts:[
+    {ok:"« Et ça t'est venu comment, ça ? »", no:"« Et sinon, tu fais quoi ? » (puis silence)"},
+    {ok:"Reprendre un mot qu'elle a employé, deux minutes après.", no:"Enchaîner sur ton propre sujet dès qu'elle finit."}
+  ],
+  scenario:{
+    ctx:"Elle raconte qu'elle a quitté son travail pour faire un métier complètement différent il y a un an. Tu sens que c'est un moment où elle s'ouvre.",
+    opts:[
+      {t:"Tu enchaînes sur ton propre changement de vie, c'est dans le même thème.", ok:false, why:"Le thème est le même, le sujet devient toi. Tu viens de lui voler le moment qu'elle t'offrait."},
+      {t:"Tu dis : « Tu as eu peur à quel moment ? »", ok:true, why:"Tu creuses une émotion, pas une information. C'est le genre de question qui fait qu'une conversation devient réelle — et les conversations réelles, c'est là où l'intérêt naît."},
+      {t:"Tu dis : « Ah super. Et sinon tu fais quoi comme sport ? »", ok:false, why:"Tu changes de sujet au moment où elle s'ouvrait. Elle apprend que ça ne sert à rien de s'ouvrir avec toi."}
+    ]
+  }
+},
+{
+  id:'signaux', n:4, t:"Lire les signaux", s:"Intérêt, politesse, gêne : trois choses différentes.",
+  lesson:[
+    {h:"Un sourire n'est pas un oui", p:[
+      "Les femmes sont socialisées pour être aimables. Un sourire, une réponse, un rire poli : ça ne veut pas dire « je veux continuer ». Ça veut souvent dire « je ne veux pas être désagréable ». Confondre les deux, c'est la source numéro un des malaises.",
+      "Ce qui indique un vrai intérêt, c'est **l'investissement** : elle relance, elle pose des questions, elle revient vers toi, elle laisse traîner la conversation, elle te propose quelque chose, son corps reste orienté vers toi, elle rit avec ses yeux et pas seulement par politesse."
+    ]},
+    {h:"Les signaux de gêne : tu t'arrêtes", p:[
+      "Réponses de plus en plus courtes. Regard qui part ailleurs ou vers la sortie. Elle recule d'un pas, se tourne vers ses amies, reprend son téléphone. Elle répond oui à tout sans rien ajouter. Sourire figé.",
+      "Un signal de gêne n'est pas un défi à surmonter, ni un jeu de piste. C'est une information : à ce moment-là, tu conclus proprement. C'est peut-être décevant, mais c'est la seule réponse qui te laisse intact — et parfois, celle qui fait qu'elle revient plus tard."
+    ]},
+    {h:"L'ambiguïté se traite par une question, pas par une supposition", p:[
+      "Si tu ne sais pas, tu demandes : « Je te dérange ? », « Tu veux qu'on continue cette conversation, ou je te laisse ? ». Poser la question n'est pas une faiblesse. C'est la seule façon de ne pas inventer à sa place."
+    ]}
+  ],
+  rules:[
+    "<b>Regarde l'investissement, pas l'amabilité.</b> Qui relance, qui revient, qui propose ?",
+    "<b>Un signal de gêne = tu conclus.</b> Pas tu insistes, pas tu négocies."
+  ],
+  scripts:[
+    {ok:"« Je te laisse si tu es pressée, dis-moi. »", no:"Rester et parler plus fort pour rattraper son attention."},
+    {ok:"« J'ai l'impression que je te dérange — dis-moi franchement. »", no:"Continuer en interprétant son silence comme un encouragement."}
+  ],
+  scenario:{
+    ctx:"Tu parles depuis dix minutes. Elle répond, mais ses réponses raccourcissent et elle regarde deux fois vers ses amies et une fois vers la porte.",
+    opts:[
+      {t:"Tu accélères, tu racontes une histoire plus drôle pour la rattraper.", ok:false, why:"Tu as lu le signal à l'envers. Ses regards vers la porte ne sont pas un manque de distraction : ce sont des appels. Plus tu parles fort, plus tu la mets en difficulté."},
+      {t:"Tu conclus : « Bon, je vais te laisser rejoindre tes amies. C'était sympa de parler deux minutes. »", ok:true, why:"Tu lis correctement et tu rends la situation confortable pour elle. C'est exactement ce qui distingue un homme sûr de lui d'un homme qui cherche. Et ça, ça se remarque — parfois dès le lendemain."},
+      {t:"Tu demandes son numéro pour continuer plus tard.", ok:false, why:"Le moment est mal choisi : elle est en train de chercher la sortie. Demander un numéro dans un signal de gêne, c'est forcer une réponse polie qui ne vaut rien."}
+    ]
+  }
+},
+{
+  id:'consent', n:5, t:"Le consentement, concrètement", s:"Demander n'est pas casser le moment. C'est le rendre réel.",
+  lesson:[
+    {h:"Demander, c'est séduisant", p:[
+      "Il y a un mythe tenace : « si je demande, je tue l'ambiance ». C'est l'inverse. Un homme qui dit « j'ai envie de t'embrasser, tu en as envie aussi ? » ne casse rien du tout : il crée un moment de vérité, où les deux savent où ils en sont. Beaucoup de gens attendent exactement ça.",
+      "L'incertitude, elle, est ce qui tue l'ambiance. Ça se voit tout de suite quand quelqu'un cherche à savoir si l'autre est d'accord sans le lui demander."
+    ]},
+    {h:"Le oui se vérifie, il ne se suppose pas", p:[
+      "Le silence n'est pas un oui. Le « peut-être » n'est pas un oui. Le « je sais pas trop » n'est pas un oui. Le fait qu'elle n'ait rien dit la dernière fois ne vaut pas pour cette fois. Un oui donné un moment peut être retiré au suivant, sans justification — et c'est normal, c'est le principe même du consentement.",
+      "L'alcool ne rend pas un consentement valable. Si tu as un doute sur son état, la seule réponse juste est d'arrêter là."
+    ]},
+    {h:"La phrase qui marche", p:[
+      "Simple, directe, sans justification : « Tu veux qu'on continue chez moi ? », « J'ai envie de t'embrasser. », « Je peux ? ». Ce n'est pas une demande d'autorisation administrative, c'est une parole d'adulte qui dit ce qu'il veut — et qui accepte la réponse.",
+      "Et si la réponse est non : tu ne négocies pas. Tu ne prends pas un air vexé. Tu continues la soirée comme si rien ne s'était cassé, parce que rien ne s'est cassé."
+    ]}
+  ],
+  rules:[
+    "<b>Un non reste un non.</b> Même « à moitié ». Même en riant. Même si elle est venue chez toi. Même si tu as payé le dîner.",
+    "<b>Le doute = tu demandes.</b> Le doute sur son état = tu arrêtes. Pas de zone grise."
+  ],
+  scripts:[
+    {ok:"« J'ai envie de t'embrasser, tu en as envie aussi ? »", no:"Se pencher très près et attendre de voir si elle recule."},
+    {ok:"« Tu veux qu'on continue chez moi ? »", no:"« Tu viens chez moi, on regarde un film. » (et rien de plus)"}
+  ],
+  scenario:{
+    ctx:"Vous êtes chez toi, c'est tard, vous vous êtes beaucoup rapprochés. Elle a un peu bu. Tu es à un moment d'incertitude.",
+    opts:[
+      {t:"Tu y vas, elle est là et elle n'est pas partie, c'est un signe.", ok:false, why:"« Elle n'est pas partie » n'est pas un oui. C'est le raisonnement que tout le monde se raconte après coup — et celui qui produit les regrets, les plaintes, et les situations qu'on ne peut plus réparer."},
+      {t:"Tu dis : « J'ai envie de toi. Et toi, tu en as envie ? »", ok:true, why:"Tu mets les deux personnes dans la même vérité. Si c'est oui, c'est un vrai oui. Et si elle a bu, tu ajoutes : « Tu es sûre ? On peut aussi se voir demain. » Ce n'est pas une perte, c'est la seule manière d'être quelqu'un qu'on rappelle."},
+      {t:"Tu atténues, tu ne dis rien et tu attends qu'elle fasse le premier pas.", ok:false, why:"L'attente silencieuse est une pression déguisée, et ça se sent. Dire ce que tu veux clairement demande dix fois moins de courage que de faire semblant de rien."}
+    ]
+  }
+},
+{
+  id:'refus', n:6, t:"Encaisser un refus", s:"La seule compétence qui décide de la suite.",
+  lesson:[
+    {h:"Un refus n'est pas un verdict sur ta valeur", p:[
+      "Il y a deux mille raisons de refuser, et presque aucune ne concerne ta personne : elle est en couple, elle part bientôt, elle a eu une journée épouvantable, tu n'es pas son genre, elle n'est pas disponible émotionnellement en ce moment, elle est fatiguée. Un refus est une information sur un moment, pas une évaluation de ce que tu es.",
+      "Les hommes qui réussissent le mieux ne sont pas ceux qui essuient le moins de refus — ce sont ceux qui s'en remettent le plus vite."
+    ]},
+    {h:"La règle des trois secondes", p:[
+      "Quand tu entends non : trois secondes pour accuser le coup, puis tu réponds normalement. « Pas de souci, bonne soirée. » Point. Pas de « bon ok », pas de soupir, pas de « juste un café alors ? », pas de commentaire sur son comportement.",
+      "Ce moment-là, c'est celui où on voit qui tu es. Et paradoxalement, c'est souvent celui qui laisse la meilleure impression."
+    ]},
+    {h:"Ne demande jamais pourquoi", p:[
+      "Personne ne te doit une explication. Insister pour comprendre, c'est transformer un non en négociation — et une négociation, quand elle porte sur le fait d'être avec toi, tu la perds toujours.",
+      "Si tu encaisses en silence et que du déception t'habite, c'est normal. Ça se gère ailleurs : avec tes amis, en écrivant, en bougeant. Pas sur elle."
+    ]}
+  ],
+  rules:[
+    "<b>Trois secondes, puis « pas de souci ».</b> Toujours. Sans exception.",
+    "<b>Un refus ne se rejoue pas</b> : ni le soir même, ni trois jours après par message."
+  ],
+  scripts:[
+    {ok:"« Pas de souci. Bonne soirée. »", no:"« Bon ok... pourquoi en fait ? »"},
+    {ok:"Partir avec le sourire et ne rien changer à ta soirée.", no:"En parler toute la soirée avec tes amis à trois mètres d'elle."}
+  ],
+  scenario:{
+    ctx:"Tu as proposé de se voir demain. Elle dit : « Je ne pense pas, désolée. »",
+    opts:[
+      {t:"Tu réponds : « Pourquoi ? J'ai dit quelque chose de mal ? »", ok:false, why:"Tu transformes son non en enquête dont elle doit s'occuper. C'est le contraire de ce qu'il faut faire — tu lui donnes du travail, et tu te places en position de tout petit."},
+      {t:"Tu réponds : « Pas de souci. Bonne soirée. » Et tu passes à autre chose.", ok:true, why:"Tu encaisses proprement, tu gardes ta dignité intacte, et tu ne lui fais porter aucun poids. Sur dix refus, c'est ce comportement qui fait que deux reviennent plus tard — pas les relances."},
+      {t:"Tu laisses : « Ok, réfléchis et dis-moi si tu changes d'avis. »", ok:false, why:"Tu laisses une porte ouverte qui la met en dette vis-à-vis de toi. Ce n'est pas un cadeau qu'on lui fait, c'est une pression qu'on lui laisse à gérer."}
+    ]
+  }
+},
+{
+  id:'rdv', n:7, t:"Du flirt au rendez-vous", s:"Proposer clairement, suivre simplement.",
+  lesson:[
+    {h:"Une proposition, pas un sondage", p:[
+      "« On se voit quand ? » met tout le travail sur elle et ne produit rien. Une proposition est un lieu, un créneau, une activité : « Jeudi soir, il y a un truc sympa vers 19 h, ça te dit ? ». Elle peut dire non, ou proposer autre chose — dans les deux cas vous avancez.",
+      "Un rendez-vous court et concret bat un rendez-vous flou d'une journée entière. Deux heures suffisent toujours pour savoir si on a envie de se revoir."
+    ]},
+    {h:"Le suivi : un message, une fois", p:[
+      "Après un bon moment, un message simple dans les 24 à 48 heures : « C'était sympa hier. On remet ça ? ». Un seul. Sans « tu es là ? », sans « tu m'as pas répondu », sans trois relances.",
+      "Si elle ne répond pas, l'absence de réponse est une réponse. Tu ne la relances pas. C'est frustrant, c'est normal, et c'est ce qui te garde propre."
+    ]},
+    {h:"Ce qui fait la différence au deuxième rendez-vous", p:[
+      "Tu t'en souviens. Tu poses une question sur un truc qu'elle t'a raconté la première fois. Ce détail-là, ça frappe plus que tout le reste : ça veut dire que tu écoutais vraiment, et pas seulement que tu voulais quelque chose."
+    ]}
+  ],
+  rules:[
+    "<b>Lieu + jour + heure</b> : toujours les trois. Sinon ce n'est pas une proposition.",
+    "<b>Un seul message de suivi.</b> Silence = réponse."
+  ],
+  scripts:[
+    {ok:"« Jeudi 19 h, un petit bar près de chez moi dont on m'a dit du bien — ça te dit ? »", no:"« Il faudrait qu'on se voie un de ces quatre. »"},
+    {ok:"« C'était vraiment sympa. On remet ça ? »", no:"« T'es là ? » (x4)"}
+  ],
+  scenario:{
+    ctx:"Votre premier rendez-vous s'est bien passé. Deux jours après, tu n'as pas encore écrit. Tu hésites à envoyer plusieurs messages pour montrer ton intérêt.",
+    opts:[
+      {t:"Tu envoies trois messages d'affilée pour montrer que tu es investi.", ok:false, why:"Trois messages, c'est un déséquilibre qui s'installe tout de suite. Ça met une pression qu'aucune relation ne supporte au début."},
+      {t:"Tu envoies un seul message : « C'était vraiment sympa. On remet ça ? »", ok:true, why:"Clair, sobre, une seule fois. Tu dis ce que tu veux, tu laisses la place, et tu ne transformes pas ton intérêt en charge pour elle."},
+      {t:"Tu ne dis rien et tu attends qu'elle écrive, pour ne pas paraître en demande.", ok:false, why:"Ce n'est pas de la valeur, c'est un jeu. Et les jeux d'attente se paient toujours au moment où l'un des deux se lasse."}
+    ]
+  }
+}
+];
+
+/* =========================================================================
+   SIGNAUX — lecture honnête
+   ========================================================================= */
+const SIGNALS = {
+  oui:[
+    ["Elle relance", "Elle ajoute une question, revient sur un sujet, te propose quelque chose. C'est le signal le plus fiable qui existe."],
+    ["Elle investit du temps", "Elle reste alors qu'elle pourrait partir, elle reporte ce qu'elle devait faire, elle prend ton contact."],
+    ["Son corps reste ouvert", "Elle est tournée vers toi, pas vers la sortie. Elle ne recule pas quand tu t'approches un peu."],
+    ["Elle rit avec les yeux", "Le rire implique les yeux, pas seulement la bouche."],
+    ["Elle se rapproche d'elle-même", "Elle réduit la distance sans que tu le fasses en premier."]
+  ],
+  neutre:[
+    ["Un sourire", "Une femme aimable sourit. Ça ne veut pas dire qu'elle veut continuer. Ça veut dire qu'elle est polie."],
+    ["Des réponses polies", "« Oui », « c'est vrai », « ah bon », sans relance : elle répond, elle n'échange pas."],
+    ["« On verra »", "Ni un non, ni un oui. Si tu ne sais pas, demande — ne suppose pas."],
+    ["Elle est polie alors qu'elle a un casque", "Un contexte fermé n'apprend rien sur son intérêt. Ce n'est pas le moment, c'est tout."]
+  ],
+  non:[
+    ["Réponses de plus en plus courtes", "Le raccourcissement progressif est le signal le plus courant et le plus ignoré."],
+    ["Le regard qui cherche la sortie", "Vers ses amies, vers la porte, vers son téléphone. Ce sont des appels, pas des distractions."],
+    ["Le corps qui recule, les bras qui se ferment", "Un pas en arrière, les bras croisés, le buste qui se détourne : la réponse est déjà donnée."],
+    ["Le sourire figé", "Poli, mais qui ne bouge plus. La personne attend que ça s'arrête."],
+    ["Elle reprend son téléphone", "Souvent un refuge accepté socialement. Le message est clair."],
+    ["Un non explicite, même en riant", "Un non est un non. Le ton ne change rien."]
+  ]
+};
+
+/* =========================================================================
+   ÉTAT + MOTEUR
+   ========================================================================= */
+const KEY = 'alaise-v1';
+let state = load();
+let current = null;
+
+function load(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(KEY) || '{}');
+    return { done: raw.done || [], notes: raw.notes || '', viewed: raw.viewed || [] };
+  }catch(e){ return { done:[], notes:'', viewed:[] }; }
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+const app = document.getElementById('app');
+
+function updateProgress(){
+  const n = state.done.length, total = MODULES.length, pct = Math.round(n/total*100);
+  document.getElementById('pfill').style.width = pct + '%';
+  const pb = document.getElementById('pbar');
+  pb.setAttribute('aria-valuenow', pct);
+  document.getElementById('ptext').textContent = n + (n>1?' modules terminés':' module terminé') + ' sur ' + total;
+  document.getElementById('pct').textContent = pct + ' %';
+}
+
+function esc(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+
+/* =========================================================================
+   TECHNIQUES — le cœur de l'appli. Chaque technique : ce que c'est,
+   pourquoi ça marche, la phrase exacte, l'erreur qui la tue, l'exercice.
+   ========================================================================= */
+const TECHNIQUES = [
+{c:"Ouvertures", ic:"1", items:[
+ {n:"L'ouverture directe honnête",
+  p:"Tu dis ce qui est vrai, sans détour : que tu l'as remarquée et que tu avais envie de venir lui parler. Aucune ambiguïté, aucune stratégie, aucune excuse.",
+  why:"C'est ce qui te distingue immédiatement. Sur 100 hommes qui l'abordent, 95 tournent autour du pot. Dire simplement « j'avais envie de te parler » suppose que tu assumes ton intérêt — et assumer son intérêt, c'est ce qu'on appelle la confiance.",
+  say:"« Bonjour. Je t'ai vue et j'avais envie de venir te dire bonjour. »",
+  err:"La transformer en excuse : « désolé de te déranger, je sais pas si... ». Là tu viens de t'excuser d'exister.",
+  ex:"Dis-la à voix haute dix fois seul, jusqu'à ce que ça sorte sans trembler."},
+ {n:"L'ouverture contextuelle",
+  p:"Tu rebondis sur un élément réel du moment : la file d'attente, la musique, ce qu'elle tient, ce qu'elle regarde.",
+  why:"Elle ne peut pas être mal à l'aise : vous êtes dans la même situation. C'est l'ouverture avec le taux de réponse le plus élevé qui existe, parce qu'elle ne demande rien.",
+  say:"« On fait la queue depuis vingt ans. Tu sais si ça vaut le coup ou je rentre chez moi ? »",
+  err:"Décrire une situation fausse (« il fait chaud » alors qu'il fait froid) : elle le repère en une seconde.",
+  ex:"Chaque fois que tu attends quelque part cette semaine, trouve une phrase sur la situation. Même sans l'utiliser."},
+ {n:"L'opinion opener",
+  p:"Tu demandes son avis sur un choix binaire léger et amusant, sans lien avec son apparence.",
+  why:"Un avis, ça engage beaucoup plus qu'un compliment. Les gens adorent donner leur avis — et pour répondre, elle doit s'impliquer.",
+  say:"« Question sérieuse : t'es du genre à commander toujours la même chose, ou à tester le truc inconnu ? »",
+  err:"Choisir un sujet clivant réel (politique, religion) : tu obtiens un débat, pas une conversation.",
+  ex:"Prépare trois questions binaires légères que tu poserais à n'importe qui."},
+ {n:"L'ouverture en trois mots",
+  p:"Dans un lieu de passage, tu t'en tiens au minimum : un mot ou deux, puis silence. Tu laisses faire le plus dur par le regard et l'attente.",
+  why:"Dans un lieu de passage, tout ce qui dure devient une agression. Un mot court, elle décide : réponse ou non. Dans les deux cas, tu es propre et elle est tranquille.",
+  say:"« Bonjour. » (et tu attends, tranquillement.)",
+  err:"Enchaîner quatre questions parce que le silence te gêne.",
+  ex:"Entraîne le silence : compte jusqu'à trois, en étant immobile, sans rien dire."},
+ {n:"Le compliment sur un choix, jamais sur un corps",
+  p:"Tu complimentes une décision, une allure, une façon de faire — quelque chose qu'elle a construit ou choisi.",
+  why:"Le compliment sur le physique, elle l'a entendu trois fois aujourd'hui : il ne dit rien de toi, il dit seulement que tu regardes. Un compliment sur un choix dit que tu observes, et l'observation crée un lien.",
+  say:"« J'aime bien la façon dont t'as accordé ce machin — ça crève les yeux que c'est réfléchi. »",
+  err:"« T'as de beaux yeux » au bout de trente secondes.",
+  ex:"Trouve un compliment de « choix » pour trois personnes que tu connais déjà."}
+]},
+
+{c:"Présence, voix, corps", ic:"2", items:[
+ {n:"Le débit lent",
+  p:"Tu parles environ 20 % plus lentement que ton instinct. Tu articules. Tu ne remplis pas les vides.",
+  why:"La vitesse, c'est le symptôme du besoin : besoin de convaincre vite, de terminer avant qu'on t'interrompe. La lenteur dit « je suis en train de réfléchir et je ne suis pas pressé » — et dans les deux sexes, ça se lit comme de la valeur.",
+  say:"Prends une phrase, dis-la en 4 secondes au lieu de 2,5.",
+  err:"Parler lentement mais en cherchant ses mots : ça devient de l'incertitude. Lent = fluide, pas hésitant.",
+  ex:"Enregistre-toi 60 secondes sur ton téléphone. Tu entendras la vitesse que tu ne remarques jamais."},
+ {n:"La phrase qui descend",
+  p:"Tu termines tes phrases en baissant la voix, jamais en la montant.",
+  why:"Une phrase qui monte à la fin est une question déguisée : elle demande confirmation. Une phrase qui descend est une affirmation : elle existe toute seule. C'est la différence entre « je vais par là ? » et « je vais par là. »",
+  say:"(à travailler à l'oral, en lisant trois phrases à voix haute).",
+  err:"Monter à la fin sur les compliments et les propositions — le plus courant, et le plus coûteux.",
+  ex:"Lis trois phrases de l'appli à voix haute en finissant vers le bas. Recommence dix fois."},
+ {n:"Le silence de deux secondes",
+  p:"Quand elle finit de parler, tu ne remplis pas immédiatement. Tu laisses deux secondes de silence en la regardant.",
+  why:"Le silence est ce qui coûte le moins cher et rapporte le plus : il montre que tu n'as pas peur, que tu n'es pas un perroquet qui attend son tour. Beaucoup de connexion se fait exactement là.",
+  say:"(pause) « … Et ça t'est venu comment, ça ? »",
+  err:"Combler le silence par du bavardage sur toi.",
+  ex:"Trois conversations cette semaine : impose-toi la pause avant de répondre."},
+ {n:"L'immobilité",
+  p:"Tu restes stable : deux pieds au sol, mains visibles, tu ne te balances pas, tu ne tripotes pas ton verre, tu ne te passes pas la main dans les cheveux.",
+  why:"L'agitation se remarque avant les mots. Un corps stable, c'est un corps qui n'a rien à prouver.",
+  say:"(mains posées, épaules ouvertes, buste vers elle).",
+  err:"Les mains dans les poches ou cachées : ça coupe aussi la gestuelle qui accompagne ta parole.",
+  ex:"Debout, tiens la position 3 minutes sans bouger. C'est plus dur que ça en a l'air."},
+ {n:"Le regard 70/30",
+  p:"70 % du temps dans les yeux quand elle parle ; 30 % quand c'est toi qui parles — le reste se perd sur le côté, tranquillement.",
+  why:"Un regard fixe met mal à l'aise ; un regard fuyant trahit le manque d'assurance. Le 70/30 est ce qui se lit comme « attentif et solide ».",
+  say:"(regarde un œil, puis l'autre, puis relâche sur le côté).",
+  err:"Baisser les yeux dès qu'elle te regarde.",
+  ex:"En conversation avec quelqu'un que tu ne dragues pas : chronomètre mentalement ton ratio."}
+]},
+
+{c:"Humour, complicité, teasing", ic:"3", items:[
+ {n:"Le teasing léger",
+  p:"Tu la taquines sur un détail non sensible : sa manie de commande, son sport improbable, la façon dont elle raconte une histoire.",
+  why:"La taquiner dit deux choses à la fois : je te remarque, et tu ne me fais pas peur. C'est le contraire de mettre sur un piédestal — et le piédestal, ça tue le désir.",
+  say:"« Attends. Tu mets le pain dans le frigo, c'est ça, ta technique ? »",
+  err:"La taquiner sur son corps, son âge, son travail mal payé ou quelque chose dont elle parle avec gêne. Là ce n'est plus du jeu, c'est une attaque.",
+  ex:"Prépare trois taquineries sur des détails innocents — et écoute si elle rit ou si elle se ferme."},
+ {n:"Le callback (la reprise)",
+  p:"Tu reprends une blague, un mot ou une expression qu'elle a utilisée vingt minutes plus tôt.",
+  why:"C'est la technique la plus rentable du flirt, et la moins connue. Reprendre un détail propre à la conversation crée un « nous » : vous avez déjà votre vocabulaire à deux. C'est exactement ce qui fait qu'elle se sentira liée.",
+  say:"« Comment ça s'appelle déjà, ton truc — le pain au frigo ? »",
+  err:"Reprendre tellement souvent que ça devient une blague lourde.",
+  ex:"Dans ta prochaine conversation, note un mot qu'elle emploie et ressors-le 20 minutes plus tard."},
+ {n:"L'exagération assumée",
+  p:"Tu racontes un petit truc banal en le poussant à l'absurde, sans jamais mentir sur du sérieux.",
+  why:"Ça crée une complicité d'humour, ça teste son second degré (donc votre compatibilité), et ça montre que tu ne te prends pas au sérieux. C'est aussi un excellent filtre : si elle enchaîne, vous allez bien ensemble.",
+  say:"« J'ai traversé la ville pour un truc à la con. J'ai failli devenir une légende locale. »",
+  err:"Exagérer un fait réel qu'elle pourrait vérifier (métier, salaire, réussites) : tu t'installes dans un mensonge à tenir.",
+  ex:"Prends une anecdote banale et gonfle-la à l'oral. Observe sa réaction : c'est un test de compatibilité."},
+ {n:"Le jeu de rôle",
+  p:"Tu proposes un petit jeu commun : vous êtes deux espions, deux concurrents d'un concours, un prof et son élève du dimanche.",
+  why:"Un jeu partagé donne une intimité instantanée et permet de dire des choses chargées sous couvert d'humour. Le flirt a besoin d'un espace où les deux peuvent ne pas tout assumer.",
+  say:"« On dirait deux espions en train de fuir. Je crois que le serveur nous a repérés. »",
+  err:"Des rôles qui te donnent un pouvoir « soft » sur elle (maître, patron, chef) : là tu ne joues plus.",
+  ex:"Installe un petit jeu de rôle au moins une fois cette semaine, et laisse-la le faire évoluer."},
+ {n:"La blague privée",
+  p:"Vous inventez un mot, un nom, une expression pour une chose à vous deux.",
+  why:"C'est la première pierre d'une culture de couple : un truc que personne d'autre ne comprend. C'est ce qui transforme « une soirée sympa » en « nous deux ».",
+  say:"« On l'appellera le pain-à-la-verne. Adopté ? »",
+  err:"L'expliquer aux autres en soirée : ça casse l'exclusivité qui fait tout l'intérêt.",
+  ex:"Créez-en un, et utilise-le par message deux jours plus tard."}
+]},
+
+{c:"Tension et désir", ic:"4", items:[
+ {n:"Le regard qui s'attarde une seconde de trop",
+  p:"Tu la regardes dans les yeux une seconde de plus que ce qui est normal, tu ne dis rien. Puis tu souris lentement et tu reprends la conversation tranquille.",
+  why:"C'est la tension par excellence : personne n'a rien dit, les deux ont tout compris. Ce moment-là est plus efficace que n'importe quelle phrase, et il ne peut pas être mal interprété puisqu'il n'a rien imposé.",
+  say:"(silence, un regard qui reste, puis tu enchaînes) « Bref. Tu disais quoi ? »",
+  err:"Le faire durer : trois secondes fixes, ça passe de la tension à la gêne.",
+  ex:"Une seule fois ce soir-là. La rareté fait la force."},
+ {n:"Le sourire lent",
+  p:"Ton sourire arrive une demi-seconde après le sien, et il est plus petit que le sien. Tu ne dégaines pas un grand sourire immédiat.",
+  why:"Un sourire instantané est un réflexe de contentement : « elle m'a souri, je suis soulagé ». Un sourire qui arrive après dit : j'ai décidé de sourire. C'est une différence minuscule que tout le monde perçoit.",
+  say:"(regarde, puis souris.)",
+  err:"Sourire en continu pour éviter les silences : ça transforme ton visage en fond d'écran.",
+  ex:"Entraîne-toi devant un miroir : deux secondes avant de sourire."},
+ {n:"La proximité progressive",
+  p:"Tu réduis la distance par petits paliers — quelques centimètres à la fois, pas un bond. Tu la laisses réduire l'écart aussi.",
+  why:"Le rapprochement par paliers laisse à l'autre la place de suivre. S'il suit, l'envie est partagée. S'il ne suit pas, tu as ta réponse sans avoir mis personne en difficulté.",
+  say:"(avance d'un demi-pas en parlant, pas d'un grand pas en te taisant).",
+  err:"Le grand saut d'un coup : tu passes de la conversation à la contrainte.",
+  ex:"Teste un demi-pas cette semaine et observe seulement son corps : il recule ou il vient ?"},
+ {n:"Le compliment rare et spécifique",
+  p:"Tu dis un compliment qu'elle n'a jamais entendu, adressé à sa manière de faire ou de penser, pas à son apparence.",
+  why:"« T'es belle » : entendu cent fois. « Je crois que ce qui me plaît chez toi, c'est que tu ne cherches pas à me plaire » : jamais entendu. Le second dit que tu regardes, et ça, ça vient chercher bien plus loin.",
+  say:"« J'aime bien le fait que tu dises ce que tu penses, même quand ça arrange personne. »",
+  err:"Le préciser, l'expliquer, le noyer sous des mots : un compliment fort se dit court.",
+  ex:"Écris-le avant, pour quelqu'un que tu connais. Puis, un jour, dis-le vraiment."},
+ {n:"Le retour à l'action après le compliment",
+  p:"Tu dis un compliment ou quelque chose de sincère, puis tu enchaînes immédiatement sur autre chose, sans t'arrêter dessus.",
+  why:"Ce qui trahit la quémanderie, ce n'est pas le compliment, c'est l'attente après. Enchaîner dit : j'assume ce que je viens de dire, et je n'attends rien en retour. C'est ce qui rend un compliment lourd ou léger.",
+  say:"« J'aime vraiment ta façon de raconter ça. Bref, tu as vu l'heure ? »",
+  err:"Marquer un temps d'arrêt et la regarder comme pour guetter un effet.",
+  ex:"Entraîne-toi à enchaîner dans une conversation neutre, avec un ami."},
+ {n:"Le sous-entendu léger",
+  p:"Tu dis un truc anodin, mais dont le sens second est clair. Tu la laisses l'attraper sans le commenter.",
+  why:"Le désir a besoin d'implicite. Dire les choses à moitié crée un espace où elle peut avancer elle aussi — et si elle joue le jeu, vous savez tous les deux où vous allez.",
+  say:"« Je suis très content de t'avoir rencontrée. Je crois que je vais avoir du mal à rentrer chez moi. »",
+  err:"Le sous-entendu vulgaire ou explicite trop tôt : ça ferme le jeu au lieu de l'ouvrir.",
+  ex:"Une phrase à double sens, jamais deux de suite. Le silence après fait le travail."}
+]},
+
+{c:"Faire avancer la conversation", ic:"5", items:[
+ {n:"La règle du 50/50",
+  p:"Tu équilibres : elle parle, tu parles. Si tu poses plus de trois questions d'affilée sans rien donner de toi, tu es un formulaire.",
+  why:"L'attraction naît de l'échange, pas de l'interrogatoire. Un homme qui écoute vraiment et qui se livrerait un peu devient tout de suite différent des autres.",
+  say:"(question) → (elle répond) → (tu partages un bout de toi) → (pause).",
+  err:"Enchaîner « et tu fais quoi, et tu viens d'où, et tu as des frères ? »",
+  ex:"Pendant une conversation, compte : combien d'informations sur elle, combien sur toi ? Corrige jusqu'à l'équilibre."},
+ {n:"La relance en escalier",
+  p:"Chaque question va un cran plus profond : fait → anecdote → émotion → valeur.",
+  why:"« Tu fais quoi ? » (fait) → « C'était comment la première fois ? » (anecdote) → « Tu as eu peur ? » (émotion) → « Qu'est-ce qui compte le plus pour toi là-dedans ? » (valeur). C'est cette progression qui crée la proximité en une soirée.",
+  say:"« Et ça t'est venu comment ? » · « Tu as eu peur à quel moment ? » · « Qu'est-ce qui t'a le plus surpris ? »",
+  err:"Aller droit aux émotions d'emblée : ça ressemble à un interrogatoire.",
+  ex:"Choisis une conversation cette semaine et fais trois crans dans l'escalier."},
+ {n:"L'histoire en trois temps",
+  p:"Raconte en trois blocs : le contexte, le moment où ça se tend, la chute. Court — 40 secondes, pas cinq minutes.",
+  why:"Tu restes intéressant sans monopoliser. Et raconter une histoire, c'est la seule façon de montrer qui tu es sans te vanter — la structure fait mieux le travail qu'un CV.",
+  say:"« Il y a deux ans, j'ai accepté un truc complètement fou… » (contexte) « …et au bout de trois jours, ça a mal tourné… » (tension) « …depuis, je ne signe plus rien le vendredi. » (chute)",
+  err:"Une histoire sans chute, ou qui explique ta réussite : tu es le seul à t'amuser.",
+  ex:"Prépare deux histoires de 40 secondes par écrit. Raconte-les à un ami et coupe tout ce qui ennuie."},
+ {n:"Le partage risqué",
+  p:"Tu dis quelque chose de vrai sur toi qui te met un peu en jeu : un échec, un doute, un truc que tu assumes et qui n'est pas flatteur.",
+  why:"La proximité ne vient jamais de tes réussites. Elle vient de ce que tu acceptes de montrer. Un homme qui assume un échec est incomparablement plus attractif que celui qui ne montre rien.",
+  say:"« J'ai mis deux ans à oser faire ce que je fais maintenant. J'avais peur, pour de vrai. »",
+  err:"Le faire trop tôt, trop fort, ou pour chercher de la réassurance : ça devient une séance de consolation.",
+  ex:"Prépare un partage risqué, court, sans autocompassion."},
+ {n:"Le pivot",
+  p:"Quand la conversation se passe bien, tu la déplaces : « on devrait continuer ailleurs, il y a trop de bruit ici ».",
+  why:"Changer de lieu ensemble, c'est le vrai accélérateur du flirt. Un nouvel endroit crée un souvenir commun et un sentiment d'aventure — c'est ce que la mémoire retient. Ceux qui parlent trois heures au même endroit rentrent seuls.",
+  say:"« Il y a un endroit beaucoup mieux à deux rues. On y va ? »",
+  err:"Attendre qu'elle propose. Le pivot, c'est à toi de le faire, dans la direction : lieu, heure, décision concrète.",
+  ex:"Aie toujours un second endroit en tête avant de sortir. Sers-t'en quand ça marche."}
+]},
+
+{c:"Escalade, rendez-vous, messages", ic:"6", items:[
+ {n:"Le changement de lieu par étapes",
+  p:"Tu déplaces la rencontre par paliers : lieu bruyant → lieu calme → un endroit plus intime. Tu ne passes pas du premier bar à chez toi.",
+  why:"Chaque palier laisse la place de dire non sans que ça devienne un clash, et crée un souvenir commun de plus en plus privé. C'est comme ça que la soirée change de nature sans qu'aucun des deux n'ait eu à forcer.",
+  say:"« on va marcher un peu » → « il y a un bar à vins à côté » → « j'habite à cinq minutes, si tu veux qu'on continue ».",
+  err:"Le grand saut direct : tu supprimes les paliers où elle aurait pu avancer d'elle-même.",
+  ex:"Avant ta prochaine sortie, écris tes trois paliers. Tu n'es pas obligé de tous les faire."},
+ {n:"Le contact naturel",
+  p:"Le premier contact est léger et justifié : la main sur le bras quand tu ris, l'épaule, un petit coup de coude. Court, puis tu retires.",
+  why:"Un contact bref et léger teste la réaction sans peser sur elle : si elle reste proche, l'envie est partagée. Puis tu attends le suivant, un peu plus long. La progression, c'est ça — pas un plan, un échange.",
+  say:"(tu ris vraiment, main sur son avant-bras, deux secondes, puis tu relâches).",
+  err:"Le contact long, immobile ou qui cherche un endroit du corps trop tôt.",
+  ex:"Un contact de deux secondes, un seul, dans une conversation de trente minutes. Observe si elle reste."},
+ {n:"La proposition datée",
+  p:"Jour + heure + lieu précis. Jamais « un de ces quatre ».",
+  why:"« On se voit quand ? » transfère tout le travail à elle et ne produit rien. Une proposition concrète est plus facile à accepter qu'à refuser — et un non reste possible, ce qui est exactement ce qui la rend saine.",
+  say:"« Jeudi soir, il y a un petit bar près de chez moi dont on m'a dit du bien. 19 h, ça te dit ? »",
+  err:"Proposer une activité longue (journée entière, week-end) avant même le premier rendez-vous : beaucoup trop d'engagement pour un premier pas.",
+  ex:"Prépare trois propositions concrètes : courte, courte, courte. Toute la durée fait peur au début."},
+ {n:"La sortie facile",
+  p:"Tu ajoutes systématiquement : « si ça te dit pas, pas de souci » — et tu le penses vraiment.",
+  why:"C'est contre-intuitif et c'est la technique la plus efficace de la liste. Retirer la pression augmente massivement le nombre de oui, parce que l'autre ne se sent pas coincée. Et un oui donné sans pression est un oui solide.",
+  say:"« Ça te dit ? Si pas, pas de souci, dis-moi. »",
+  err:"Ajouter « pas de souci » avec une voix de reproche. Ça transforme la sortie en chantage.",
+  ex:"Repère les prochaines fois où tu proposes quelque chose : propose un jour où tu es presque sûr du non, pour t'habituer à le dire sans y attacher ton ego."},
+ {n:"Le message unique de suivi",
+  p:"Après un bon moment, un seul message dans les 24 à 48 h, clair et léger, avec une reprise de votre conversation.",
+  why:"Le message relance et prouve qu'il n'était pas qu'un passant. Le suivant, s'il n'y a pas de réponse, n'est pas de la persévérance — c'est le moment où tu perds la personne et ta propre image.",
+  say:"« C'était vraiment sympa hier. On remet ça ? — Et j'ai vérifié : le pain au frigo, c'est un vrai concept, j'ai testé. »",
+  err:"« T'es là ? » · « Tu m'as pas répondu » · trois relances étalées. Rien ne fait fuir aussi vite.",
+  ex:"Écris-le dans le délai, en une fois, et n'ouvre l'appli plus après."}
+]},
+
+{c:"Ce qui ne marche pas (et pourquoi)", ic:"7", items:[
+ {n:"« Ignore-la / fais-la attendre » — le faux désintérêt",
+  p:"Faire semblant d'être pris, ne jamais répondre en premier, disparaître pour qu'elle revienne.",
+  why_ca_ne_marche_pas:"Ça sélectionne exactement le mauvais profil : ça attire les personnes qui confondent distance et valeur, et ça fait fuir celles qui sont stables et qui savent ce qu'elles valent. Et ça t'enferme dans du jeu d'acteur permanent, pendant des semaines. Beaucoup reviennent en effet — pour l'insécurité, pas pour toi.",
+  say:"— ",
+  err:"Le confondre avec « ne pas être en demande » : garder sa vie, c'est sain ; punir quelqu'un par le silence, non.",
+  ex:"À la place : sois clair et régulier. Un homme prévisible dans son intérêt est beaucoup plus attirant qu'un homme qui joue."},
+ {n:"Les scripts de manipulateurs",
+  p:"Les techniques « psychologiques » qui visent à te faire désirer en jouant sur le manque, la jalousie, la peur de l'abandon.",
+  why_ca_ne_marche_pas:"Ça fonctionne — sur des personnes fragiles, et pour quelques mois. Tu obtiens une relation que tu devras entretenir par la manipulation, donc éternellement : c'est un travail à perpétuité. Et quand ça finit, ça finit mal pour les deux, avec quelqu'un qui te déteste et qui te méprise.",
+  say:"—",
+  err:"Croire que c'est ce que les femmes veulent, parce que ces comptes ont des abonnés. Ils ont des abonnés : c'est un business.",
+  ex:"À la place : apprends les techniques de la partie 3 et 4. Elles marchent sur n'importe qui, et tu n'as besoin d'en assumer aucune."},
+ {n:"Le compliment physique en ouverture",
+  p:"« T'es magnifique » comme première phrase, parce qu'il faut bien lancer.",
+  why_ca_ne_marche_pas:"Ce n'est pas un compliment, c'est une ligne de catalogue : elle l'a reçu plusieurs fois cette semaine, par message, dans la rue, dans son travail. Tu ne te distingues pas, tu te mets dans une pile. Et tu passes à côté de tout ce qu'elle est d'autre.",
+  say:"—",
+  err:"Croire qu'un tel compliment ouvre des portes parce qu'il « faut » oser.",
+  ex:"À la place : une ouverture (partie 1), et le compliment sur un choix, plus tard, en partie 4."},
+ {n:"Forcer un contexte fermé",
+  p:"Aborder quelqu'un avec un casque, en marche rapide, le nez dans un livre, ou qui vient visiblement de dire non.",
+  why_ca_ne_marche_pas:"Ce n'est pas une technique de séduction, c'est une intrusion — et c'est ce qui fait qu'aborder devient désagréable pour tout le monde, y compris pour les hommes corrects. Un contexte fermé n'est pas un défi : c'est un moment où tu passes. Le passant qui sait passer est celui qu'on remarque plus tard.",
+  say:"—",
+  err:"Confondre « tenir tête » et « harceler ».",
+  ex:"À la place : repère les contextes ouverts (files d'attente, cours, soirées, événements) et ignore les autres. Tu auras de bien meilleurs résultats, avec dix fois moins d'échecs."}
+]}
+];
+
+/* ---- écran : parcours ---- */
+function screenHome(){
+  current = 'home';
+  let h = `<section class="screen">
+    <p class="kicker">Parcours — 7 étapes</p>
+    <h1>Être à l'aise avec les femmes, ça s'apprend.</h1>
+    <p class="lede">31 techniques concrètes, avec les phrases exactes : ouvrir, tenir une conversation, créer la tension, taquiner, escalader, proposer. Plus une base solide et de quoi encaisser un refus.</p>
+    <p>Ça se travaille dans l'ordre : chaque étape rend la suivante possible. Tu peux tout faire en une heure, ou une étape par jour — c'est mieux.</p>
+    <ul class="mods">`;
+  MODULES.forEach(m => {
+    const d = state.done.includes(m.id);
+    h += `<li><button class="mod${d?' done':''}" data-mod="${m.id}">
+      <span class="num">${d ? '✓' : m.n}</span>
+      <span><span class="t">${esc(m.t)}</span><span class="s">${esc(m.s)}</span></span>
+    </button></li>`;
+  });
+  h += `</ul>
+    <div class="btnrow">
+      <button class="btn" data-go="train">S'entraîner aux situations</button>
+      <button class="btn ghost" data-go="journal">Écrire dans le journal</button>
+    </div>
+  </section>`;
+  app.innerHTML = h;
+}
+
+/* ---- écran : un module ---- */
+function screenMod(id){
+  const m = MODULES.find(x => x.id === id);
+  if(!m) return screenHome();
+  current = 'mod-' + id;
+  const isDone = state.done.includes(m.id);
+  let h = `<section class="screen">
+    <p class="kicker">Étape ${m.n} sur ${MODULES.length}</p>
+    <h1>${esc(m.t)}</h1>
+    <p class="lede">${esc(m.s)}</p>`;
+  m.lesson.forEach(b => {
+    h += `<div class="block"><h3>${esc(b.h)}</h3>`;
+    b.p.forEach(p => h += `<p>${p}</p>`);
+    h += `</div>`;
+  });
+  if(m.rules && m.rules.length){
+    h += `<h2 style="margin:var(--sp5) 0 var(--sp3)">Les règles à retenir</h2>`;
+    m.rules.forEach(r => h += `<div class="rule">${r}</div>`);
+  }
+  if(m.scripts && m.scripts.length){
+    h += `<h2 style="margin:var(--sp5) 0 var(--sp3)">Concrètement</h2>`;
+    m.scripts.forEach(s => h += `<div class="block"><div class="say">
+      <span class="good">${esc(s.ok)}</span>
+      <span class="bad">${esc(s.no)}</span></div></div>`);
+  }
+  h += `<h2 style="margin:var(--sp5) 0 var(--sp3)">À toi de jouer</h2>
+    <div class="scen" data-scen="${m.id}">
+      <p class="ctx">${esc(m.scenario.ctx)}</p>
+      <div class="opts"></div>
+      <div class="feedback hidden"></div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" data-complete="${m.id}">${isDone ? 'Déjà validé ✓' : 'Marquer cette étape comme faite'}</button>
+      <button class="btn ghost" data-go="home">Retour au parcours</button>
+    </div>
+  </section>`;
+  app.innerHTML = h;
+  renderOpts(m);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+}
+
+function renderOpts(m){
+  const box = document.querySelector(`.scen[data-scen="${m.id}"]`);
+  if(!box) return;
+  const wrap = box.querySelector('.opts');
+  const fb = box.querySelector('.feedback');
+  m.scenario.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = esc(o.t);
+    b.addEventListener('click', () => {
+      if(wrap.dataset.answered) return;
+      wrap.dataset.answered = '1';
+      b.classList.add(o.ok ? 'pick-ok' : 'pick-no');
+      Array.from(wrap.children).forEach((el, j) => {
+        if(j === i) return;
+        el.style.opacity = '.55';
+      });
+      fb.classList.remove('hidden');
+      fb.innerHTML = `<b>${o.ok ? 'Oui, c\'est ça.' : 'Non.'}</b> ${o.why}`;
+      fb.scrollIntoView({block:'nearest', behavior:'smooth'});
+    });
+    wrap.appendChild(b);
+  });
+}
+
+
+/* ---- écran : techniques ---- */
+function screenTech(){
+  current = 'tech';
+  let h = `<section class="screen">
+    <p class="kicker">Techniques — 6 familles</p>
+    <h1>Les techniques, une par une.</h1>
+    <p style="color:var(--muted);font-size:15px">Suivies de 4 pièges classiques et de pourquoi ils font perdre.</p>
+    <p class="lede">Ce que c'est, pourquoi ça marche, la phrase exacte, l'erreur qui la tue, et l'exercice pour l'acquérir. Lis-en une, applique-la ce soir.</p>`;
+  TECHNIQUES.forEach(g => {
+    const warn = g.c.indexOf("ne marche pas") > -1;
+    h += `<div class="famhead${warn?' warn':''}">
+      <span class="fnum">${warn?'✗':g.ic}</span>
+      <h2>${esc(g.c)}</h2></div>`;
+    g.items.forEach(t => {
+      h += `<div class="block"><h3>${esc(t.n)}</h3>
+        <p>${esc(t.p)}</p>`;
+      if(t.why) h += `<div class="rule"><b>Pourquoi ça marche —</b> ${esc(t.why)}</div>`;
+      if(t.why_ca_ne_marche_pas) h += `<div class="rule" style="border-left-color:var(--muted)"><b>Pourquoi ça ne marche pas —</b> ${esc(t.why_ca_ne_marche_pas)}</div>`;
+      if(t.say && t.say !== '— ') h += `<div class="say" style="border-top:none;padding-top:0"><span class="good">${esc(t.say)}</span></div>`;
+      h += `<div class="say"><span class="bad">${esc(t.err)}</span></div>
+        <div class="say"><span style="color:var(--muted)"><b style="color:var(--text)">Exercice —</b> ${esc(t.ex)}</span></div>
+      </div>`;
+    });
+  });
+  h += `</section>`;
+  app.innerHTML = h;
+}
+
+/* ---- écran : entraînement ---- */
+function screenTrain(){
+  current = 'train';
+  const pool = MODULES.slice();
+  let h = `<section class="screen">
+    <p class="kicker">Entraînement</p>
+    <h1>Sept situations, un seul bon réflexe par situation.</h1>
+    <p class="lede">Réponds sans réfléchir trop longtemps. Les explications comptent plus que les réponses.</p>`;
+  pool.forEach(m => {
+    h += `<div class="scen" data-scen="${m.id}">
+      <p class="ctx"><b style="color:var(--text)">${esc(m.t)}</b> — ${esc(m.scenario.ctx)}</p>
+      <div class="opts"></div>
+      <div class="feedback hidden"></div>
+    </div>`;
+  });
+  h += `</section>`;
+  app.innerHTML = h;
+  pool.forEach(m => renderOpts(m));
+}
+
+/* ---- écran : signaux ---- */
+function screenSignals(){
+  current = 'signals';
+  const grp = (key, cls, title, sub) => {
+    let s = `<h2 style="margin:var(--sp5) 0 var(--sp2)">${title}</h2>
+      <p style="color:var(--muted); font-size:15px">${sub}</p><div class="sig">`;
+    SIGNALS[key].forEach(([t, d]) => {
+      s += `<div class="sigrow"><span class="tag ${cls}">${t}</span>${d}</div>`;
+    });
+    return s + `</div>`;
+  };
+  app.innerHTML = `<section class="screen">
+    <p class="kicker">Signaux</p>
+    <h1>Trois lectures à ne jamais confondre.</h1>
+    <p class="lede">L'amabilité n'est pas de l'intérêt. La gêne n'est pas un défi. Et ce que tu ne sais pas, tu le demandes.</p>
+    ${grp('oui','oui',"Un vrai intérêt", "Ce qui compte, c'est l'investissement : qui relance, qui revient, qui propose.")}
+    ${grp('neutre','neutre',"Ni l'un ni l'autre", "Ça ne dit rien. Ni encouragement, ni refus.")}
+    ${grp('non','non',"De la gêne, ou un refus", "À ce moment-là, tu conclus proprement. Sans négocier, sans commenter.")}
+  </section>`;
+}
+
+/* ---- écran : journal ---- */
+function screenJournal(){
+  current = 'journal';
+  app.innerHTML = `<section class="screen">
+    <p class="kicker">Journal</p>
+    <h1>Ce que tu gardes d'une approche.</h1>
+    <p class="lede">Trois lignes après chaque tentative : ce que tu as dit, ce qui s'est passé, ce que tu changes la prochaine fois.</p>
+    <p>Ce n'est pas du journal intime. C'est un carnet d'entraînement — c'est comme ça qu'on progresse vraiment, en regardant ce qui a marché plutôt qu'en ressassant ce qui a raté.</p>
+    <textarea id="notes" aria-label="Journal d'entraînement" placeholder="Ex. Ce soir, file d'attente au cinéma. Ouverture simple, elle a répondu et relancé. J'ai parlé trop vite au début. Prochaine fois : ralentir et laisser un silence.">${esc(state.notes)}</textarea>
+    <p class="note">Enregistré automatiquement sur cet appareil, à chaque frappe.</p>
+    <div class="btnrow">
+      <button class="btn ghost" id="clear">Effacer le journal</button>
+      <button class="btn ghost" id="reset">Réinitialiser la progression</button>
+    </div>
+  </section>`;
+  const ta = document.getElementById('notes');
+  ta.addEventListener('input', () => { state.notes = ta.value; save(); });
+  document.getElementById('clear').addEventListener('click', () => {
+    if(confirm('Effacer tout le journal ?')){ state.notes=''; save(); ta.value=''; }
+  });
+  document.getElementById('reset').addEventListener('click', () => {
+    if(confirm('Remettre la progression à zéro ?')){ state = {done:[],notes:state.notes,viewed:[]}; save(); updateProgress(); screenHome(); }
+  });
+}
+
+/* ---- navigation ---- */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go],[data-mod],[data-complete]');
+  if(!b) return;
+  if(b.dataset.mod){ screenMod(b.dataset.mod); return; }
+  if(b.dataset.complete){
+    const id = b.dataset.complete;
+    if(!state.done.includes(id)){ state.done.push(id); save(); updateProgress(); }
+    b.textContent = 'Déjà validé ✓';
+    return;
+  }
+  const go = b.dataset.go;
+  if(go === 'home') screenHome();
+  else if(go === 'tech') screenTech();
+  else if(go === 'train') screenTrain();
+  else if(go === 'signals') screenSignals();
+  else if(go === 'journal') screenJournal();
+  document.querySelectorAll('.bar button').forEach(x => x.classList.toggle('on', x.dataset.go === go));
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+updateProgress();
+screenHome();
+</script>
+</body>
+</html>
