@@ -148,6 +148,7 @@ footer{border-top:1px solid var(--border); margin-top:var(--sp8); padding:var(--
 @media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
 @media (max-width:420px){h1{font-size:29px} h2{font-size:22px} body{font-size:16px}}
 </style>
+<link rel="stylesheet" href="studio.css">
 </head>
 <body>
 
@@ -163,7 +164,7 @@ footer{border-top:1px solid var(--border); margin-top:var(--sp8); padding:var(--
   </div>
 </header>
 
-<main class="wrap" id="app"></main>
+<main class="wrap" id="app" tabindex="-1"></main>
 
 <footer class="wrap">
   <p><b style="color:var(--text)">Ce que cette appli ne fera jamais :</b> t'apprendre à manipuler, à faire peur, ou à rendre quelqu'un dépendant de toi. Rien ici ne repose sur l'insécurité de l'autre. Un intérêt qui a besoin d'un stratagème pour exister n'existe pas.</p>
@@ -171,7 +172,7 @@ footer{border-top:1px solid var(--border); margin-top:var(--sp8); padding:var(--
 </footer>
 
 <nav class="bar" aria-label="Navigation principale">
-  <button data-go="home" class="on">Parcours</button>
+  <button data-go="home" class="on">Accueil</button>
   <button data-go="tech">Techniques</button>
   <button data-go="train">Entraînement</button>
   <button data-go="signals">Signaux</button>
@@ -341,10 +342,10 @@ const MODULES = [
     {ok:"« Tu veux qu'on continue chez moi ? »", no:"« Tu viens chez moi, on regarde un film. » (et rien de plus)"}
   ],
   scenario:{
-    ctx:"Vous êtes chez toi, c'est tard, vous vous êtes beaucoup rapprochés. Elle a un peu bu. Tu es à un moment d'incertitude.",
+    ctx:"Vous êtes chez toi, c'est tard, vous vous êtes beaucoup rapprochés. Elle a bu et tu doutes de sa capacité à choisir librement et clairement.",
     opts:[
       {t:"Tu y vas, elle est là et elle n'est pas partie, c'est un signe.", ok:false, why:"« Elle n'est pas partie » n'est pas un oui. C'est le raisonnement que tout le monde se raconte après coup — et celui qui produit les regrets, les plaintes, et les situations qu'on ne peut plus réparer."},
-      {t:"Tu dis : « J'ai envie de toi. Et toi, tu en as envie ? »", ok:true, why:"Tu mets les deux personnes dans la même vérité. Si c'est oui, c'est un vrai oui. Et si elle a bu, tu ajoutes : « Tu es sûre ? On peut aussi se voir demain. » Ce n'est pas une perte, c'est la seule manière d'être quelqu'un qu'on rappelle."},
+      {t:"Tu dis : « On s’arrête là pour ce soir. On pourra se revoir une autre fois. »", ok:true, why:"Si tu doutes de sa capacité à consentir, tu arrêtes le rapprochement. Demander plusieurs fois ne lève pas ce doute. Veille à ce qu’elle soit en sécurité, sans attendre de contrepartie."},
       {t:"Tu atténues, tu ne dis rien et tu attends qu'elle fasse le premier pas.", ok:false, why:"L'attente silencieuse est une pression déguisée, et ça se sent. Dire ce que tu veux clairement demande dix fois moins de courage que de faire semblant de rien."}
     ]
   }
@@ -377,7 +378,7 @@ const MODULES = [
     ctx:"Tu as proposé de se voir demain. Elle dit : « Je ne pense pas, désolée. »",
     opts:[
       {t:"Tu réponds : « Pourquoi ? J'ai dit quelque chose de mal ? »", ok:false, why:"Tu transformes son non en enquête dont elle doit s'occuper. C'est le contraire de ce qu'il faut faire — tu lui donnes du travail, et tu te places en position de tout petit."},
-      {t:"Tu réponds : « Pas de souci. Bonne soirée. » Et tu passes à autre chose.", ok:true, why:"Tu encaisses proprement, tu gardes ta dignité intacte, et tu ne lui fais porter aucun poids. Sur dix refus, c'est ce comportement qui fait que deux reviennent plus tard — pas les relances."},
+      {t:"Tu réponds : « Pas de souci. Bonne soirée. » Et tu passes à autre chose.", ok:true, why:"Tu encaisses proprement, tu gardes ta dignité intacte, et tu ne lui fais porter aucun poids. Respecter sa réponse suffit : tu n’attends pas qu’elle change d’avis."},
       {t:"Tu laisses : « Ok, réfléchis et dis-moi si tu changes d'avis. »", ok:false, why:"Tu laisses une porte ouverte qui la met en dette vis-à-vis de toi. Ce n'est pas un cadeau qu'on lui fait, c'est une pression qu'on lui laisse à gérer."}
     ]
   }
@@ -453,10 +454,10 @@ let current = null;
 function load(){
   try{
     const raw = JSON.parse(localStorage.getItem(KEY) || '{}');
-    return { done: raw.done || [], notes: raw.notes || '', viewed: raw.viewed || [] };
+    return { done: Array.isArray(raw?.done) ? [...new Set(raw.done)].filter(id => MODULES.some(m => m.id === id)) : [], notes: typeof raw?.notes === 'string' ? raw.notes : '', viewed: Array.isArray(raw?.viewed) ? raw.viewed : [] };
   }catch(e){ return { done:[], notes:'', viewed:[] }; }
 }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); return true; }catch(e){ return false; } }
 
 const app = document.getElementById('app');
 
@@ -480,13 +481,13 @@ const TECHNIQUES = [
 {c:"Ouvertures", ic:"1", items:[
  {n:"L'ouverture directe honnête",
   p:"Tu dis ce qui est vrai, sans détour : que tu l'as remarquée et que tu avais envie de venir lui parler. Aucune ambiguïté, aucune stratégie, aucune excuse.",
-  why:"C'est ce qui te distingue immédiatement. Sur 100 hommes qui l'abordent, 95 tournent autour du pot. Dire simplement « j'avais envie de te parler » suppose que tu assumes ton intérêt — et assumer son intérêt, c'est ce qu'on appelle la confiance.",
+  why:"C'est ce qui te distingue immédiatement. Dire simplement « j'avais envie de te parler » suppose que tu assumes ton intérêt — et assumer son intérêt, c'est ce qu'on appelle la confiance.",
   say:"« Bonjour. Je t'ai vue et j'avais envie de venir te dire bonjour. »",
   err:"La transformer en excuse : « désolé de te déranger, je sais pas si... ». Là tu viens de t'excuser d'exister.",
   ex:"Dis-la à voix haute dix fois seul, jusqu'à ce que ça sorte sans trembler."},
  {n:"L'ouverture contextuelle",
   p:"Tu rebondis sur un élément réel du moment : la file d'attente, la musique, ce qu'elle tient, ce qu'elle regarde.",
-  why:"Elle ne peut pas être mal à l'aise : vous êtes dans la même situation. C'est l'ouverture avec le taux de réponse le plus élevé qui existe, parce qu'elle ne demande rien.",
+  why:"Le contexte partagé donne un sujet concret. Cela ne garantit ni son intérêt ni son confort : vérifie qu’elle est disponible et laisse-la mettre fin à l’échange.",
   say:"« On fait la queue depuis vingt ans. Tu sais si ça vaut le coup ou je rentre chez moi ? »",
   err:"Décrire une situation fausse (« il fait chaud » alors qu'il fait froid) : elle le repère en une seconde.",
   ex:"Chaque fois que tu attends quelque part cette semaine, trouve une phrase sur la situation. Même sans l'utiliser."},
@@ -497,8 +498,8 @@ const TECHNIQUES = [
   err:"Choisir un sujet clivant réel (politique, religion) : tu obtiens un débat, pas une conversation.",
   ex:"Prépare trois questions binaires légères que tu poserais à n'importe qui."},
  {n:"L'ouverture en trois mots",
-  p:"Dans un lieu de passage, tu t'en tiens au minimum : un mot ou deux, puis silence. Tu laisses faire le plus dur par le regard et l'attente.",
-  why:"Dans un lieu de passage, tout ce qui dure devient une agression. Un mot court, elle décide : réponse ou non. Dans les deux cas, tu es propre et elle est tranquille.",
+  p:"Dans un lieu de passage, tu t'en tiens au minimum : un mot ou deux, puis silence. Tu laisses la personne choisir si elle veut poursuivre l’échange.",
+  why:"Dans un lieu de passage, évite de retenir quelqu’un ou de bloquer son chemin. Un mot court, elle décide : réponse ou non. Dans les deux cas, tu es propre et elle est tranquille.",
   say:"« Bonjour. » (et tu attends, tranquillement.)",
   err:"Enchaîner quatre questions parce que le silence te gêne.",
   ex:"Entraîne le silence : compte jusqu'à trois, en étant immobile, sans rien dire."},
@@ -817,7 +818,7 @@ function screenTech(){
     g.items.forEach(t => {
       h += `<div class="block"><h3>${esc(t.n)}</h3>
         <p>${esc(t.p)}</p>`;
-      if(t.why) h += `<div class="rule"><b>Pourquoi ça marche —</b> ${esc(t.why)}</div>`;
+      if(t.why) h += `<div class="rule"><b>Ce que cela peut apporter —</b> ${esc(t.why)}</div>`;
       if(t.why_ca_ne_marche_pas) h += `<div class="rule" style="border-left-color:var(--muted)"><b>Pourquoi ça ne marche pas —</b> ${esc(t.why_ca_ne_marche_pas)}</div>`;
       if(t.say && t.say !== '— ') h += `<div class="say" style="border-top:none;padding-top:0"><span class="good">${esc(t.say)}</span></div>`;
       h += `<div class="say"><span class="bad">${esc(t.err)}</span></div>
@@ -882,11 +883,11 @@ function screenJournal(){
     <p class="note">Enregistré automatiquement sur cet appareil, à chaque frappe.</p>
     <div class="btnrow">
       <button class="btn ghost" id="clear">Effacer le journal</button>
-      <button class="btn ghost" id="reset">Réinitialiser la progression</button>
+      <button class="btn ghost" id="reset">Réinitialiser le parcours</button>
     </div>
   </section>`;
   const ta = document.getElementById('notes');
-  ta.addEventListener('input', () => { state.notes = ta.value; save(); });
+  ta.addEventListener('input', () => { state.notes = ta.value; const ok = save(); app.querySelector('.note').textContent = ok ? 'Enregistré sur cet appareil.' : 'Stockage indisponible : copie ton texte avant de fermer cette page.'; });
   document.getElementById('clear').addEventListener('click', () => {
     if(confirm('Effacer tout le journal ?')){ state.notes=''; save(); ta.value=''; }
   });
@@ -916,8 +917,9 @@ document.addEventListener('click', e => {
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
-updateProgress();
-screenHome();
 </script>
+<script src="studio.js"></script>
+<script src="lessons.js"></script>
+<script>updateProgress(); screenHome();</script>
 </body>
 </html>
