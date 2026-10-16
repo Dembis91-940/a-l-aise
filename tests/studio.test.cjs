@@ -22,3 +22,20 @@ assert.equal(stories.length,4);assert.equal(b.run('CHALLENGES.length'),7);
 assert.match(b.run("MODULES.find(m=>m.id==='consent').scenario.opts.find(o=>o.ok).t"),/arrête/);
 assert.ok(!html.includes('Sur dix refus'));
 console.log(`OK: migration, invalid storage, blocked storage, ${paths} conversation paths, consent regression.`);
+
+const lessonSource=readFileSync(path.join(root,'app/lessons.js'),'utf8');
+vm.runInContext(lessonSource,b.ctx);
+const lessons=JSON.parse(b.run('JSON.stringify(DEEP_LESSONS)'));
+assert.equal(lessons.length,12);
+assert.equal(new Set(lessons.map(l=>l.id)).size,12);
+for(const l of lessons){
+ assert.equal(l.alternatives.length,3);
+ assert.ok(b.run(`MODULES.some(m=>m.id===${JSON.stringify(l.related)})`),'broken module link');
+ assert.ok(l.exercise && l.success && l.principle && l.depth);
+}
+assert.ok(b.run("filterLessons('REACTION','all').length")>0);
+assert.equal(b.run("filterLessons('zzzintrouvable','all').length"),0);
+assert.ok(b.run("filterLessons('', 'Messages').every(l=>l.category==='Messages')"));
+assert.equal(b.run("filterLessons('pâtisserie', 'Messages').length"),0);
+assert.ok(html.includes('<script src="lessons.js"></script>'));
+console.log('OK: 12 guides, 36 response branches, related modules and combined search filters.');

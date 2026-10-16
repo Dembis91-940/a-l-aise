@@ -481,13 +481,13 @@ const TECHNIQUES = [
 {c:"Ouvertures", ic:"1", items:[
  {n:"L'ouverture directe honnête",
   p:"Tu dis ce qui est vrai, sans détour : que tu l'as remarquée et que tu avais envie de venir lui parler. Aucune ambiguïté, aucune stratégie, aucune excuse.",
-  why:"C'est ce qui te distingue immédiatement. Sur 100 hommes qui l'abordent, 95 tournent autour du pot. Dire simplement « j'avais envie de te parler » suppose que tu assumes ton intérêt — et assumer son intérêt, c'est ce qu'on appelle la confiance.",
+  why:"C'est ce qui te distingue immédiatement. Dire simplement « j'avais envie de te parler » suppose que tu assumes ton intérêt — et assumer son intérêt, c'est ce qu'on appelle la confiance.",
   say:"« Bonjour. Je t'ai vue et j'avais envie de venir te dire bonjour. »",
   err:"La transformer en excuse : « désolé de te déranger, je sais pas si... ». Là tu viens de t'excuser d'exister.",
   ex:"Dis-la à voix haute dix fois seul, jusqu'à ce que ça sorte sans trembler."},
  {n:"L'ouverture contextuelle",
   p:"Tu rebondis sur un élément réel du moment : la file d'attente, la musique, ce qu'elle tient, ce qu'elle regarde.",
-  why:"Elle ne peut pas être mal à l'aise : vous êtes dans la même situation. C'est l'ouverture avec le taux de réponse le plus élevé qui existe, parce qu'elle ne demande rien.",
+  why:"Le contexte partagé donne un sujet concret. Cela ne garantit ni son intérêt ni son confort : vérifie qu’elle est disponible et laisse-la mettre fin à l’échange.",
   say:"« On fait la queue depuis vingt ans. Tu sais si ça vaut le coup ou je rentre chez moi ? »",
   err:"Décrire une situation fausse (« il fait chaud » alors qu'il fait froid) : elle le repère en une seconde.",
   ex:"Chaque fois que tu attends quelque part cette semaine, trouve une phrase sur la situation. Même sans l'utiliser."},
@@ -498,8 +498,8 @@ const TECHNIQUES = [
   err:"Choisir un sujet clivant réel (politique, religion) : tu obtiens un débat, pas une conversation.",
   ex:"Prépare trois questions binaires légères que tu poserais à n'importe qui."},
  {n:"L'ouverture en trois mots",
-  p:"Dans un lieu de passage, tu t'en tiens au minimum : un mot ou deux, puis silence. Tu laisses faire le plus dur par le regard et l'attente.",
-  why:"Dans un lieu de passage, tout ce qui dure devient une agression. Un mot court, elle décide : réponse ou non. Dans les deux cas, tu es propre et elle est tranquille.",
+  p:"Dans un lieu de passage, tu t'en tiens au minimum : un mot ou deux, puis silence. Tu laisses la personne choisir si elle veut poursuivre l’échange.",
+  why:"Dans un lieu de passage, évite de retenir quelqu’un ou de bloquer son chemin. Un mot court, elle décide : réponse ou non. Dans les deux cas, tu es propre et elle est tranquille.",
   say:"« Bonjour. » (et tu attends, tranquillement.)",
   err:"Enchaîner quatre questions parce que le silence te gêne.",
   ex:"Entraîne le silence : compte jusqu'à trois, en étant immobile, sans rien dire."},
@@ -818,7 +818,7 @@ function screenTech(){
     g.items.forEach(t => {
       h += `<div class="block"><h3>${esc(t.n)}</h3>
         <p>${esc(t.p)}</p>`;
-      if(t.why) h += `<div class="rule"><b>Pourquoi ça marche —</b> ${esc(t.why)}</div>`;
+      if(t.why) h += `<div class="rule"><b>Ce que cela peut apporter —</b> ${esc(t.why)}</div>`;
       if(t.why_ca_ne_marche_pas) h += `<div class="rule" style="border-left-color:var(--muted)"><b>Pourquoi ça ne marche pas —</b> ${esc(t.why_ca_ne_marche_pas)}</div>`;
       if(t.say && t.say !== '— ') h += `<div class="say" style="border-top:none;padding-top:0"><span class="good">${esc(t.say)}</span></div>`;
       h += `<div class="say"><span class="bad">${esc(t.err)}</span></div>
@@ -919,6 +919,7 @@ document.addEventListener('click', e => {
 
 </script>
 <script src="studio.js"></script>
+<script src="lessons.js"></script>
 <script>updateProgress(); screenHome();</script>
 </body>
 </html>

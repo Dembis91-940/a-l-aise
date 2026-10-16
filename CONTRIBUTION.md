@@ -36,3 +36,11 @@ Avant fusion, vérifier les changements concurrents de Hermes. Une fusion de la 
 Ce sont des exercices rédigés, pas un coach IA conversationnel. Les exemples ne sont pas des garanties de séduction. Les données restent dans le navigateur : effacer les données du site les supprime, et elles ne se synchronisent pas entre appareils. Le brouillon de message est volontairement temporaire.
 
 Les textes historiques des 31 techniques n’ont pas tous été réécrits. Une prochaine passe éditoriale devrait nuancer les formulations absolues telles que « pourquoi ça marche », les délais rigides et les interprétations certaines du langage corporel. Faire essayer les exercices à quelques utilisateurs permettrait de repérer les scénarios trop évidents ou les explications peu claires. Les captures historiques de la page de présentation montrent encore l’ancienne interface ; les actualiser lors de la prochaine publication visuelle.
+
+## Approfondissement du contenu — 16 octobre 2026
+
+Ajout de `app/lessons.js` : 12 guides originaux, 12 dialogues, 36 variantes de réaction et 12 exercices. L’entrée « Explorer les guides » apparaît sur l’accueil et dans les techniques. La bibliothèque combine recherche sans accents et filtre par thème. Chaque guide renvoie à un module existant et au journal, sans modifier les données personnelles.
+
+La méthode et le périmètre de consultation sont détaillés dans `SOURCES-CONTENU.md` : deux légendes publiques Instagram, le profil, les captures fournies et la page commerciale déjà consultée. Aucun livre payant n’a été lu. Les textes ne constituent ni une copie du compte ni une validation de ses promesses.
+
+Tests supplémentaires : unicité des guides, liens vers les modules, nombre de réactions, recherche combinée, consultation dans le navigateur. Les fiches courtes historiques restent disponibles, avec correction de quelques affirmations excessives.
