@@ -208,14 +208,14 @@ td{color:var(--sc-ink-soft)} td.y{color:var(--sc-ink)} td.no{color:var(--sc-ink-
       </div>
       <figure data-sc-reveal="left" data-sc-reveal-at="0.10 0.62" style="margin:0">
         <div class="frame"><img src="assets/zoom-scenario.webp" width="840" height="760" alt="Un scénario d'entraînement : la situation, trois réponses possibles, et l'explication de la bonne"></div>
-        <figcaption class="cap">Chaque situation a trois réponses, une seule tient, et l'appli explique pourquoi.</figcaption>
+        <figcaption class="cap">Les exercices expliquent tes choix ; le studio propose aussi des conversations à plusieurs suites.</figcaption>
       </figure>
     </div>
 
     <div class="wrap">
       <div class="tool" data-sc-in>
         <h3>Teste ta phrase d'ouverture</h3>
-        <p style="margin:0">Écris exactement ce que tu dirais. L'appli te dit ce qui va dessus, ce qui va coincer, et te donne une version corrigée.</p>
+        <p style="margin:0">Écris ce que tu dirais. Cet outil propose des repères de forme, sans prédire la réaction de l’autre.</p>
         <label for="dit">Ton ouverture</label>
         <input id="dit" type="text" placeholder="Ex. Salut, ça va ? Tu es magnifique, je peux te parler ?" autocomplete="off">
         <button id="test" type="button">Verdict</button>
@@ -253,21 +253,20 @@ td{color:var(--sc-ink-soft)} td.y{color:var(--sc-ink)} td.no{color:var(--sc-ink-
       <p class="kick" data-sc-in>Ce qu'il y a dans l'appli</p>
       <h2 data-sc-in>Des chiffres exacts, pas des promesses.</h2>
       <div class="stats" data-sc-in data-sc-stagger="80">
-        <div class="stat"><div class="v"><span data-sc-count="0 31">0</span></div><div class="l">techniques, chacune avec sa phrase exacte et son exercice</div></div>
-        <div class="stat"><div class="v"><span data-sc-count="0 7">0</span></div><div class="l">étapes, dans l'ordre où elles s'apprennent</div></div>
-        <div class="stat"><div class="v"><span data-sc-count="0 7">0</span></div><div class="l">situations à choix multiples, avec l'explication de la bonne réponse</div></div>
+        <div class="stat"><div class="v"><span data-sc-count="0 31">31</span></div><div class="l">techniques, chacune avec sa phrase exacte et son exercice</div></div>
+        <div class="stat"><div class="v"><span data-sc-count="0 7">7</span></div><div class="l">étapes, dans l'ordre où elles s'apprennent</div></div>
+        <div class="stat"><div class="v"><span data-sc-count="0 7">7</span></div><div class="l">situations à choix multiples, avec l'explication de la bonne réponse</div></div>
       </div>
 
-      <table data-sc-in>
-        <tbody>
-          <tr><th></th><th>Les autres</th><th>À l'aise</th></tr>
-          <tr><td>Le format</td><td class="no">Un PDF à lire</td><td class="y">Un entraînement à faire</td></tr>
-          <tr><td>Le retour sur tes réponses</td><td class="no">Aucun</td><td class="y">Chaque scénario est corrigé</td></tr>
-          <tr><td>Le prix</td><td class="no">« Promo jusqu'à minuit »</td><td class="y">Gratuit, sans condition</td></tr>
-          <tr><td>Le paiement</td><td class="no">Crypto, remboursement impossible</td><td class="y">Aucun paiement demandé</td></tr>
-          <tr><td>Ce que ça t'apprend</td><td class="no">À jouer un rôle</td><td class="y">À tenir une conversation, même imparfaitement</td></tr>
-        </tbody>
-      </table>
+      <table data-sc-in><tbody>
+        <tr><th>Ton besoin</th><th>Dans l’atelier</th></tr>
+        <tr><td>Approfondir</td><td>12 guides détaillés avec dialogues, réactions possibles et exercices</td></tr>
+        <tr><td>Trouver tes mots</td><td>4 conversations à embranchements, avec un retour pour chaque choix</td></tr>
+        <tr><td>Écrire simplement</td><td>4 modèles à adapter et une relecture locale de ton message</td></tr>
+        <tr><td>Pratiquer à ton rythme</td><td>7 défis et un journal personnel</td></tr>
+        <tr><td>Retrouver un conseil</td><td>Recherche dans les techniques</td></tr>
+        <tr><td>Accéder à l’appli</td><td>Gratuit, sans compte ni paiement</td></tr>
+      </tbody></table>
       <p style="margin-top:22px" data-sc-in>Aucun témoignage inventé, aucun compteur de ventes gonflé. Les seules choses qu'on peut te montrer,
       ce sont les écrans et la méthode.</p>
     </div>
@@ -298,83 +297,21 @@ td{color:var(--sc-ink-soft)} td.y{color:var(--sc-ink)} td.no{color:var(--sc-ink-
 
 <script src="scrollcraft.js"></script>
 <script>
-ScrollCraft.mount(document.body);
-
-/* ============================================================
-   Mouvement signature : le testeur d'ouverture.
-   Écrit pour cette page seule. Le moteur n'est pas touché.
-   ============================================================ */
+if (window.ScrollCraft) ScrollCraft.mount(document.body);
 (function(){
-  const input = document.getElementById('dit');
-  const btn   = document.getElementById('test');
-  const out   = document.getElementById('verdict');
-  if(!input || !btn || !out) return;
-
-  const CLICHES = [
-    {re:/(je peux te parler|on peut discuter|puis-je)/i, w:"« Je peux te parler ? » demande une autorisation que personne n'attend. Tu te places en demandeur avant d'avoir dit un mot. Entre directement.", pts:-2},
-    {re:/(tu es|t'es)\s+(trop\s+)?(belle|magnifique|mignonne|canon|belle femme|jolie)/i, w:"Le compliment physique en ouverture : elle l'a déjà entendu plusieurs fois cette semaine. Il ne dit rien de toi, il dit seulement que tu regardes.", pts:-3},
-    {re:/(yeux|corps|sourire sublime|physique)/i, w:"Un compliment sur son corps, au premier mot, met la pression tout de suite et réduit toute la conversation à ça.", pts:-2},
-    {re:/(d[ée]sol[ée]|excuse[- ]moi|je te d[ée]range|je sais pas si)/i, w:"Tu t'excuses d'exister. Une ouverture n'est pas une intrusion, elle n'a pas besoin de pardon.", pts:-2},
-    {re:/^(salut|bonjour)?\s*(ça va|ca va)\s*\??$/i, w:"« Ça va ? » ne donne rien à répondre à part « ça va ». Une question fermée en ouverture, c'est un mur déguisé en politesse.", pts:-1},
-    {re:/(un de ces quatre|quand tu veux|on verra|si tu veux bien)/i, w:"Trop vague. Une proposition a un lieu, un jour et une heure, sinon ce n'est pas une proposition.", pts:-1},
-    {re:/\?/g, w:"", pts:0}
-  ];
-  const BONUS = [
-    {re:/(j'avais envie|je voulais te dire|je t'ai remarqu)/i, w:"Tu assumes ton intérêt au lieu de tourner autour. C'est le signal de confiance le plus lisible qui existe.", pts:2},
-    {re:/(livre|musique|bar|file|attente|train|concert|expo|caf[ée]|playlist|photo)/i, w:"Tu prends appui sur le contexte partagé : elle ne peut pas être mal à l'aise, vous êtes dans la même situation.", pts:2},
-    {re:/(bonjour)/i, w:"Tu commences par un bonjour. Ça paraît bête, ça change tout sur la première seconde.", pts:1}
-  ];
-
-  function analyse(txt){
-    const t = txt.trim();
-    const words = t.split(/\s+/).filter(Boolean);
-    let score = 7;
-    const notes = [];
-
-    if(!t){ return null; }
-    if(words.length > 14){ score -= 2; notes.push({b:false, w:"C'est long pour une ouverture. Dix secondes maximum, sinon tu parles plus qu'elle."}); }
-    else if(words.length <= 12){ score += 1; }
-
-    const q = (t.match(/\?/g) || []).length;
-    if(q >= 3){ score -= 2; notes.push({b:false, w:"Trois questions d'affilée, et tu ressembles à un formulaire. Pose, écoute, donne un bout de toi."}); }
-
-    CLICHES.forEach(c => {
-      if(c.pts === 0) return;
-      if(c.re.test(t)){ score += c.pts; notes.push({b:false, w:c.w}); }
-    });
-    BONUS.forEach(b => {
-      if(b.re.test(t)){ score += b.pts; notes.push({b:true, w:b.w}); }
-    });
-
-    if(!/bonjour|salut|bonsoir/i.test(t)){ score -= 1; notes.push({b:false, w:"Pas de salutation : ça lit « prédateur pressé » en une seconde."}); }
-    if(!/(envie|remarqu)/i.test(t)){
-      notes.push({b:true, w:"Ajoute pourquoi tu viens : une phrase de vérité sur ton intention rend la même approche deux fois plus légitime."});
-    }
-
-    score = Math.max(0, Math.min(10, score));
-    return {score, notes: notes.slice(0, 4)};
-  }
-
-  function reecrire(txt){
-    const t = txt.trim();
-    if(/(livre|musique|concert|expo|caf[ée])/i.test(t)) return "« Bonjour. On fait la queue depuis vingt ans, alors autant se parler. Tu viens pour qui ce soir ? »";
-    if(/(train|file|attente|bar)/i.test(t)) return "« Bonjour. Je t'ai vue et j'avais envie de venir te dire bonjour. Tu es pressée, ou tu as deux minutes ? »";
-    return "« Bonjour. Je t'ai vue et j'avais envie de venir te dire bonjour. » Puis tu te tais, et tu la laisses répondre.";
-  }
-
-  function render(r, txt){
-    if(!r){ out.className = "verdict on"; out.innerHTML = "<p>Écris d'abord ce que tu dirais.</p>"; return; }
-    const verdict = r.score >= 7 ? "Celle-là peut fonctionner." : (r.score >= 4 ? "Elle peut passer, mais elle te dessert." : "Celle-là va se refermer.");
-    out.className = "verdict on";
-    out.innerHTML =
-      '<div class="verdict__score">' + r.score + ' / 10 <span>' + verdict + '</span></div>' +
-      '<ul>' + r.notes.map((n, i) => '<li>' + (n.b ? '<b>Ce qui va bien : </b>' : '<b>Ce qui coince : </b>') + n.w + '</li>').join('') + '</ul>' +
-      '<div class="rewrite"><b style="display:block;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;color:#ea8a63;margin-bottom:8px">Version corrigée</b>' + reecrire(txt) + '</div>' +
-      '<p style="margin:16px 0 0;font-size:14.5px">Dans l\'appli, cette phrase se travaille avec l\'exercice de la famille « Ouvertures ». Il y en a trente autres comme celle-là.</p>';
-  }
-
-  btn.addEventListener('click', () => render(analyse(input.value), input.value));
-  input.addEventListener('keydown', e => { if(e.key === 'Enter') render(analyse(input.value), input.value); });
+ const input=document.getElementById('dit'),btn=document.getElementById('test'),out=document.getElementById('verdict');
+ function review(){
+  const t=input.value.trim(); out.className='verdict on'; out.replaceChildren();
+  const add=(text)=>{const p=document.createElement('p');p.textContent=text;out.appendChild(p);};
+  if(!t){add('Écris d’abord ce que tu dirais.');return;}
+  add('Quelques repères, sans note de séduction.');
+  if(t.split(/\s+/).length>25)add('Ta phrase est assez longue. Tu peux garder une seule idée pour laisser de la place à une réponse.');
+  if((t.match(/\?/g)||[]).length>2)add('Essaie une question à la fois, puis écoute la réponse.');
+  add('Est-ce sincère et adapté au contexte ? La personne est-elle disponible pour échanger ? Une formule polie ou une demande de permission peut tout à fait convenir.');
+  add('Exemple à adapter lors d’un événement : « Bonjour, qu’est-ce qui t’a donné envie de venir ? »');
+  add('Cette relecture fonctionne avec quelques règles locales. Elle ne sait pas déduire une attirance ni garantir une réponse.');
+ }
+ btn.addEventListener('click',review);input.addEventListener('keydown',e=>{if(e.key==='Enter')review();});
 })();
 </script>
 </body>
